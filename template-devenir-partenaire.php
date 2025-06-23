@@ -8,15 +8,29 @@
     
     <style>
     .banner_gradient{
-                padding: 80px 0;
-                background-color: #ffffff;
-                background-image: url('https://tourismeouestcameroun.com/wp-content/uploads/2025/06/3e2897cd9215be43f51c912e8cf902a8.jpg');
-                background-attachment: fixed;
-                position: relative; 
-                min-height: 50vh;
-                background-repeat: no-repeat;
+        padding: 80px 0;
+        background-color: #ffffff;
+        background-image: url('https://tourismeouestcameroun.com/wp-content/uploads/2025/06/3e2897cd9215be43f51c912e8cf902a8.jpg');
+        background-size: cover;
+        background-position: center;
+        position: relative; 
+        min-height: 50vh;
+        background-repeat: no-repeat;
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        margin-top: 20px;
+        min-height: 65vh;
     }
     
+    .banner_content {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     
     .section-title {
         text-align: center;
@@ -264,16 +278,35 @@
             margin: 0 auto;
         }
     }
+    .become_partner_cover {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .formulaire_reservation {
+        margin: 0 auto;
+        float: none;
+    }
+    .form-intro {
+        text-align: center !important;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 26px !important;
+        line-height: 1.5 !important;
+        font-weight: 300;
+        font-family: Fredoka, sans-serif;
+        color: #0c4178;
+    }
     </style>
     
     	<div id="primary" class="content-area">
     		<main id="main" class="site_main">
     			
     			<div class="banner_reservation banner_gradient">
-    				<div class="container">
-    					<div class="banner_content">
-    						<h1 class="title_h1"><?php _e( "Devenir Partenaire", 'ortoc' ); ?></h1>
-    					</div>
+    				<div class="banner_content">
+    					<h1 class="title_h1"><?php _e( "Devenir Partenaire", 'ortoc' ); ?></h1>
     				</div>
     			</div>
     			<div class="become_partner">
