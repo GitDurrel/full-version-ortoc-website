@@ -938,6 +938,157 @@ get_header();
     }
 
     </style>
+
+<style> /* Added responsive styles */
+@media (max-width: 992px) { /* General Tablet */
+    .parallax-header {
+        height: auto; /* Let content define height, or set a more reasonable vh like 80vh */
+        min-height: 70vh;
+        padding-bottom: 100px; /* Space for logo if it's at the bottom */
+    }
+    .title_width_gradient .title_h2 { /* Title in parallax */
+        font-size: 48px;
+    }
+    .title_width_gradient .title_bold:after {
+         margin: -15px -15px 0;
+    }
+    .section-title { /* General section titles */
+        font-size: 48px;
+        line-height: 1.2;
+    }
+    .description-section .description-column, /* Ensure stacking if not handled by Bootstrap cols */
+    .description-section .col-md-6.mb-4.d-flex {
+        margin-bottom: 20px; /* Add space when stacked */
+    }
+    .description-column h3 { font-size: 1.4rem; }
+    .description-column .lead { font-size: 1.1rem; }
+    .description-column p { font-size: 0.9rem; }
+
+    .richesses-section, .video-section, .team-section, .contact-section, .newsletter-section, .partenaires-marquee-section {
+        padding: 60px 0;
+    }
+    .richesse-card h4 { font-size: 1.3rem; }
+    .team-name { font-size: 1.3rem; }
+    .team-position { font-size: 0.95rem; }
+    .souvenir-shop-banner { min-height: 400px; }
+    .souvenir-shop-title { font-size: 2rem; }
+    .souvenir-shop-desc { font-size: 1.1rem; }
+    .contact-title { font-size: 2.5rem; }
+    .contact-title .small_title { font-size: 1.8rem; }
+    .contact-title .bold_title { font-size: 3rem; }
+    .contact-form h2 { font-size: 2rem; }
+}
+
+@media (max-width: 768px) {
+    /* Existing .section-title rule: font-size: 45px; */
+    /* Existing .logo-animation rules are good */
+    /* Existing .contact-title and icon rules */
+
+    .parallax-header {
+        min-height: 60vh; /* Further reduce */
+        padding-bottom: 150px; /* Ensure space for potentially larger vw logo */
+    }
+    .title_width_gradient .title_h2 {
+        font-size: 36px;
+    }
+     .title_width_gradient .title_bold:after {
+        height: 20px;
+        margin: -12px -12px 0;
+    }
+    .section-title { /* Overriding the existing 45px to be more consistent */
+        font-size: 36px;
+        line-height: 1.2;
+    }
+    .description-section { padding: 40px 0; }
+    .description-column { padding: 20px; }
+    .description-column h3 { font-size: 1.25rem; }
+    .description-column .lead { font-size: 1rem; }
+
+    .richesses-section, .video-section, .team-section, .contact-section, .newsletter-section, .partenaires-marquee-section {
+        padding: 40px 0;
+    }
+    .richesse-image { height: 200px; }
+    .richesse-content h4 { font-size: 1.2rem; }
+    .video-container { border-width: 3px; }
+    .team-img { width: 150px; height: 150px; }
+    .team-name { font-size: 1.2rem; }
+    .team-position { font-size: 0.9rem; }
+
+    .souvenir-shop-banner { min-height: 350px; padding: 20px; }
+    .souvenir-shop-inner { padding: 30px 20px; }
+    .souvenir-shop-title { font-size: 1.8rem; }
+    .souvenir-shop-desc { font-size: 1rem; }
+    .cta-souvenir-btn, .cta-catalogue-btn, .view-all-btn { font-size: 1rem; padding: 10px 25px; }
+
+    .contact-section { padding: 40px 15px; } /* Add padding to section */
+    .contact-title { font-size: 1.8rem; } /* Already has rule, consolidate */
+    .contact-title .small_title { font-size: 1.3rem; }
+    .contact-title .bold_title { font-size: 2.2rem; }
+    .contact-lead { padding: 20px; font-size: 0.95rem; }
+    .contact-form { padding: 25px; margin-top: 25px;}
+    .contact-form h2 { font-size: 1.8rem; }
+    .form-control { padding: 10px 12px !important; font-size: 0.95rem !important; }
+
+    /* Modal Adjustments */
+    #agendaModal, #souvenir-float-box { padding: 20px 15px; }
+    #agendaModal .event-title { font-size: 1.1rem; }
+    #agendaModal .event-observations, #agendaModal .event-lieu { font-size: 0.95rem; }
+    #souvenir-float-box .float-title { font-size: 1.05rem; }
+    #souvenir-float-box .float-btn { font-size: 1rem; padding: 8px 20px; }
+}
+
+@media (max-width: 480px) {
+    .parallax-header {
+        min-height: 50vh;
+    }
+    .logo-animation { /* Fine-tune if needed, vw units might be small here */
+        min-width: 180px;
+        min-height: 180px;
+        bottom: 10px;
+        left: 10px;
+    }
+    .title_width_gradient .title_h2 {
+        font-size: 28px;
+    }
+    .title_width_gradient .title_bold:after {
+        height: 16px;
+        margin: -10px -10px 0;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+    .description-column { padding: 15px; }
+    .description-column h3 { font-size: 1.1rem; }
+    .description-column p { font-size: 0.85rem; }
+
+    .richesses-section, .video-section, .team-section, .contact-section, .newsletter-section, .partenaires-marquee-section {
+        padding: 30px 0;
+    }
+    .richesse-image { height: 180px; }
+    .richesse-content h4 { font-size: 1.1rem; }
+    .team-img { width: 120px; height: 120px; }
+    .team-name { font-size: 1.1rem; }
+
+    .souvenir-shop-banner { min-height: 300px; }
+    .souvenir-shop-inner { padding: 20px 15px; }
+    .souvenir-shop-title { font-size: 1.5rem; }
+    .souvenir-shop-desc { font-size: 0.9rem; }
+    .cta-souvenir-btn, .cta-catalogue-btn, .view-all-btn { font-size: 0.9rem; padding: 10px 20px; }
+
+    .contact-title { font-size: 1.5rem; }
+    .contact-title .small_title { font-size: 1.1rem; }
+    .contact-title .bold_title { font-size: 1.8rem; }
+    .contact-form h2 { font-size: 1.5rem; }
+    .form-control { font-size: 0.9rem !important; }
+    .contact-info h4 { font-size: 0.9rem; }
+    .contact-text { font-size: 0.85rem; }
+
+    #agendaModal .event-title { font-size: 1rem; }
+    #agendaModal .event-observations, #agendaModal .event-lieu { font-size: 0.9rem; }
+    #souvenir-float-box { padding: 15px; right: 15px; bottom: 15px; }
+    #souvenir-float-box .float-title { font-size: 1rem; }
+}
+</style>
 </head>
 <body>
     <!-- Header avec Parallax -->

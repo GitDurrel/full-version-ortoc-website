@@ -402,7 +402,114 @@ if (have_posts()) :
     }
     
     .gallery-swiper {
-        height: 200px;
+        /* height: 200px; /* This might be too small if curved-image-container is 420px or 350px. Let Swiper content define height. */
+    }
+    .artisanat-hero { /* Added from proposed changes */
+        height: 60vh;
+        min-height: 250px;
+    }
+    .hero-title { /* Added from proposed changes */
+        font-size: 2rem;
+    }
+    .artisanat-content-wrapper { /* Consolidated padding from proposed changes */
+        padding: 20px 15px 80px;
+        margin-bottom: 0;
+    }
+    .image-title-container { /* Adjusted from 250px */
+        max-width: 220px;
+        margin: -100px auto 20px;
+    }
+    .title-english { /* Added from proposed changes */
+        font-size: 1.1rem;
+    }
+    .description-francais, .description-anglais { /* Added from proposed changes */
+        font-size: 0.95rem;
+    }
+    .gallery-section { /* Added from proposed changes */
+        padding: 30px 0;
+    }
+    .curved-image-container { /* Adjusted from 420px */
+        height: 350px;
+    }
+    .swiper-slide { /* Adjusted from 300px */
+        width: 280px !important;
+    }
+    .swiper-button-next, .swiper-button-prev { /* Added from proposed changes */
+        width: 35px;
+        height: 35px;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after { /* Added from proposed changes */
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 992px) { /* Tablet - New rules from proposal */
+    .artisanat-hero {
+        height: 70vh;
+        min-height: 300px;
+    }
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .artisanat-content-wrapper {
+        padding: 20px 20px 100px;
+    }
+    .image-title-container {
+        max-width: 80%;
+        margin: -120px auto 20px;
+    }
+    .title-english {
+        font-size: 1.2rem;
+    }
+    .description-column {
+        min-width: 100%;
+        padding: 0 5px;
+    }
+    .curved-image-container {
+        height: 400px;
+    }
+     .swiper-slide {
+        width: 320px !important;
+    }
+}
+
+
+@media (max-width: 480px) { /* Smallest screens - New rules from proposal */
+    .artisanat-hero {
+        height: 50vh;
+        padding: 20px 10px;
+    }
+    .hero-title {
+        font-size: 1.75rem;
+    }
+    .artisanat-content-wrapper {
+        padding: 15px 10px 60px;
+    }
+    .image-title-container {
+        max-width: 180px;
+        margin: -80px auto 15px;
+    }
+    .title-english {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+    .description-francais, .description-anglais {
+        font-size: 0.9rem;
+    }
+    .artisanat-frise {
+        margin: 20px 0;
+        background-size: auto 8px;
+        height: 8px;
+    }
+    .gallery-section {
+        padding: 20px 0;
+    }
+    .curved-image-container {
+        height: 280px;
+        border-radius: 20px;
+    }
+    .swiper-slide {
+        width: 240px !important;
     }
 }
 

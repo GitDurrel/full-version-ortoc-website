@@ -103,8 +103,82 @@ get_header(); ?>
     .single-blog-content-section {
         padding: 24px 8px 18px 8px;
     }
+    .single-blog-content-section {
+        padding: 32px 18px 24px 18px; /* Adjusted from 24px 8px for more consistent padding */
+        margin: -50px auto 30px auto; /* Reduce negative margin slightly */
+    }
     .single-blog-hero-title {
-        font-size: 2.1rem;
+        font-size: 2.5rem; /* Was 2.1rem, making it a bit larger for tablet */
+    }
+    .single-blog-hero-date {
+        font-size: 1rem;
+    }
+    .single-blog-content-section p {
+        font-size: 1.05rem; /* Adjust paragraph size */
+    }
+     .single-blog-content-section h1 { font-size: 2rem; }
+     .single-blog-content-section h2 { font-size: 1.75rem; }
+     .single-blog-content-section h3 { font-size: 1.5rem; }
+}
+
+@media (max-width: 767px) { /* General mobile */
+    .single-blog-hero {
+        height: auto; /* Allow natural height */
+        min-height: 280px; /* Adjust min-height */
+        padding: 40px 15px 30px 15px;
+    }
+    .single-blog-hero-title {
+        font-size: 2rem; /* Further reduce */
+    }
+    .single-blog-hero-date {
+        font-size: 0.95rem;
+    }
+    .single-blog-content-section {
+        padding: 24px 15px 20px 15px;
+        margin: -40px auto 30px auto;
+        border-radius: 18px;
+    }
+    .single-blog-content-section p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    .single-blog-content-section h1 { font-size: 1.8rem; }
+    .single-blog-content-section h2 { font-size: 1.6rem; }
+    .single-blog-content-section h3 { font-size: 1.4rem; }
+    .single-blog-content-section img {
+        margin: 18px 0;
+        border-radius: 8px;
+    }
+    .single-blog-content-section blockquote {
+        padding: 12px 18px;
+        margin: 18px 0;
+    }
+}
+
+@media (max-width: 480px) { /* Smallest screens */
+    .single-blog-hero {
+        min-height: 220px;
+        padding: 30px 10px 20px 10px;
+    }
+    .single-blog-hero-title {
+        font-size: 1.7rem;
+    }
+    .single-blog-hero-date {
+        font-size: 0.9rem;
+    }
+    .single-blog-content-section {
+        padding: 20px 10px 15px 10px;
+        margin: -30px auto 20px auto;
+        border-radius: 12px;
+    }
+    .single-blog-content-section p {
+        font-size: 0.95rem;
+    }
+    .single-blog-content-section h1 { font-size: 1.6rem; }
+    .single-blog-content-section h2 { font-size: 1.4rem; }
+    .single-blog-content-section h3 { font-size: 1.25rem; }
+    .single-blog-content-section img {
+        margin: 15px 0;
     }
 }
 </style>

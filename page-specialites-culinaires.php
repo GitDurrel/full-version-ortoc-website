@@ -471,6 +471,147 @@ get_header();
     }
 }
 
+@media (max-width: 992px) { /* Adding a tablet breakpoint for smoother transition */
+    .introduction {
+        gap: 20px; /* Add some gap if columns are still side-by-side */
+    }
+    .colonne-gauche {
+        flex-basis: 45%; /* Adjust flex basis for better fit */
+    }
+    .colonne-droite {
+        flex-basis: 50%;
+    }
+    .intro-banner {
+        max-width: 90%;
+        height: auto; /* Allow natural height scaling */
+        margin-top: 50px;
+    }
+    .tagline {
+        font-size: 28px;
+    }
+    .section-title {
+        font-size: 48px;
+        line-height: 1.2;
+    }
+    .title_bold:after {
+        height: 22px;
+        margin: -15px -15px 0;
+    }
+    .plat-image { /* Image in plat item */
+        width: 250px;
+        height: 250px;
+    }
+    .plat-title {
+        font-size: 1.4rem; /* Approx 22px */
+    }
+}
+
+@media (max-width: 768px) {
+    /* .introduction flex-direction, .colonne-gauche/droite flex, .food-images max-width, .intro-banner max-width, .tagline font-size are existing */
+    /* .plat-item flex-direction/align-items, .plat-image margin, .plat-content width/padding, .plat-title text-align/font-size, .plat-title:after position are existing */
+     .introduction {
+        margin-bottom: 40px; /* Adjust margin */
+    }
+    .colonne-droite {
+        order: -1; /* Show image first on mobile if desired */
+    }
+     .food-image-grid img {
+        margin-top: 20px; /* Adjust from 100px */
+    }
+    .intro-banner {
+        margin-top: 20px;
+    }
+    .intro-content {
+        padding-top: 20px;
+    }
+    .section-title { /* From 48px (at 992px) */
+        font-size: 40px;
+    }
+    .plat-item {
+        padding: 20px 15px; /* Adjust padding */
+    }
+    .plat-image {
+        width: 220px; /* Adjust from 250px (at 992px) */
+        height: 220px;
+        margin-bottom: 15px;
+    }
+    .plat-title { /* Was 1.6rem in original 768px, ensuring consistency */
+        font-size: 1.5rem;
+    }
+}
+
+/* Consolidating existing @media (max-width: 480px) block with minor refinements */
+@media (max-width: 480px) {
+    .specialites-culinaires {
+        padding-bottom: 20px; /* Further reduce */
+    }
+    .introduction {
+        margin-bottom: 20px;
+    }
+    .colonne-gauche {
+        padding-top: 0;
+    }
+    .food-image-grid img {
+        margin-top: 10px;
+    }
+    .intro-banner {
+        max-width: 80%; /* Was 90% in original block, adjusted from 70% in 768px */
+        margin-top: 15px;
+    }
+    .tagline {
+        font-size: 18px; /* Was 20px in original block, adjusted from 24px in 768px */
+    }
+    .intro-content {
+        padding-top: 10px;
+        gap: 10px;
+    }
+    .french-intro, .english-intro {
+        font-size: 13px; /* Was 14px */
+    }
+    .french-intro p, .english-intro p {
+        margin-bottom: 10px;
+    }
+    .section-title {
+        font-size: 30px; /* Was 36px */
+    }
+    .title_bold:after {
+        height: 12px;
+        margin: -8px -8px 0;
+    }
+    .plats-camerounais-cpt {
+        padding: 0 5px;
+        margin-bottom: 20px;
+    }
+    .plat-item {
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    .plats-camerounais-cpt > .plat-item:first-of-type {
+      margin-top: 15px;
+    }
+    .plat-image {
+        width: 180px; /* Was 200px */
+        height: 180px;
+        margin-bottom: 10px;
+        border-width: 2px;
+    }
+    .plat-title {
+        font-size: 1.2rem; /* Was 1.3rem */
+        margin-bottom: 8px;
+    }
+    .plat-title:after {
+        width: 35px;
+    }
+    .plat-description {
+        font-size: 13px; /* Was 14px */
+        padding: 0 5px;
+    }
+    .view-all-btn {
+        font-size: 13px; /* Was 14px */
+        padding: 8px 18px;
+        gap: 6px;
+    }
+}
 </style>
 
 <div class="specialites-culinaires">

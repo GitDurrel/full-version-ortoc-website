@@ -166,7 +166,124 @@
 @media (max-width: 900px) {
   .intro-detente .container { padding: 30px 10px; }
   .espace-block, .espace-block.reverse { flex-direction: column; }
-  .espace-block .espace-img { min-height: 200px; }
+.espace-block .espace-img {
+    min-height: 200px; /* Existing */
+    min-width: 100%; /* Ensure image takes full width when stacked */
+  }
+  .intro-detente .titre-fr { /* Adjust intro title for tablets */
+    font-size: 50px;
+  }
+  .intro-detente .titre-en {
+    font-size: 1.1rem; /* Adjust if needed */
+  }
+  .intro-detente .desc-fr, .intro-detente .desc-en {
+    font-size: 1rem;
+  }
+  .description-content { /* Allow description box to be wider on tablet */
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+}
+
+@media (max-width: 767px) { /* General mobile */
+  .intro-detente {
+    min-height: 80vh; /* Reduce intro height */
+    padding-top: 20px; /* Add some padding if content is too high */
+    padding-bottom: 20px;
+  }
+  .intro-detente .titre-fr {
+    font-size: 38px;
+  }
+  .intro-detente .titre-en {
+    font-size: 1rem;
+    padding: 6px 14px;
+  }
+  .description-content { /* Description box in intro */
+      max-width: 90%;
+      padding: 15px;
+  }
+  .intro-detente .desc-fr, .intro-detente .desc-en {
+    font-size: 0.95rem;
+  }
+
+  .listing-espace-detentes {
+    padding: 40px 15px;
+  }
+  .section-title { /* Listing section title */
+    font-size: 36px;
+    line-height: 1.2;
+  }
+  .title_bold:after { /* Underline for section title */
+    height: 20px;
+    margin: -12px -12px 0;
+  }
+  .espace-block {
+      margin: 30px 0; /* Reduce margin between blocks */
+      border-radius: 12px;
+  }
+  .espace-block .espace-content {
+    padding: 24px 18px; /* Adjust content padding */
+  }
+  .espace-block .espace-title-fr {
+    font-size: 1.4rem;
+  }
+  .espace-block .espace-title-en {
+    font-size: 1rem;
+    padding: 3px 10px;
+    margin: 6px 0 10px 0;
+  }
+  .espace-block .espace-desc-fr, .espace-block .espace-desc-en {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) { /* Smallest screens */
+  .intro-detente {
+    min-height: 70vh;
+  }
+  .intro-detente .titre-fr {
+    font-size: 30px;
+    line-height: 1.1;
+  }
+   .intro-detente .titre-fr .small { /* If specific styling needed for "DÉTENTE" part */
+      font-size: inherit; /* Or a specific smaller value if 30px is still too big for it */
+   }
+  .intro-detente .titre-en {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+  .description-content {
+      max-width: 95%;
+      padding: 10px;
+      margin-top: 15px;
+  }
+  .intro-detente .desc-fr, .intro-detente .desc-en {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  .section-title {
+    font-size: 28px;
+  }
+  .title_bold:after {
+    height: 16px;
+    margin: -10px -10px 0;
+  }
+  .espace-block .espace-img {
+      min-height: 180px; /* Further adjust image height */
+  }
+  .espace-block .espace-content {
+    padding: 18px 15px;
+  }
+  .espace-block .espace-title-fr {
+    font-size: 1.25rem;
+  }
+  .espace-block .espace-title-en {
+    font-size: 0.9rem;
+  }
+  .espace-block .espace-desc-fr, .espace-block .espace-desc-en {
+    font-size: 0.85rem;
+  }
 }
 </style>
 

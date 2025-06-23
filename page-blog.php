@@ -143,7 +143,96 @@ get_header(); ?>
     .blog-listing-ortoc .blog-article-content {
         padding: 22px 16px 18px 16px;
     }
+    .blog-banner-title { /* Adjust banner title for tablets */
+        font-size: 48px;
+    }
+    .blog-listing-ortoc .blog-title { /* Adjust section title for tablets */
+        font-size: 32px;
+        margin: 40px 0 24px 0; /* Adjust margins */
+    }
 }
+
+@media (max-width: 767px) { /* General mobile */
+    .blog-banner-ortoc {
+        min-height: 60vh; /* Reduce banner height */
+        margin-bottom: 30px;
+    }
+    .blog-banner-title {
+        font-size: 36px;
+        padding: 0 10px; /* Add some padding if text gets too wide */
+    }
+    .blog-listing-ortoc {
+        margin: 30px auto 40px auto;
+        padding: 0 10px;
+    }
+    .blog-listing-ortoc .blog-title {
+        font-size: 28px;
+        margin: 30px 0 20px 0;
+    }
+    .blog-listing-ortoc .blog-article-card {
+        border-radius: 12px; /* Slightly smaller radius */
+    }
+    .blog-listing-ortoc .blog-article-img {
+        height: 220px; /* Adjust image height for mobile */
+    }
+    .blog-listing-ortoc .blog-article-content {
+        padding: 18px 12px 16px 12px; /* Adjust padding */
+    }
+    .blog-listing-ortoc .blog-article-title {
+        font-size: 1.3rem;
+    }
+    .blog-listing-ortoc .blog-article-date {
+        font-size: 0.9rem;
+    }
+    .blog-listing-ortoc .blog-article-excerpt {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    .blog-listing-ortoc .blog-article-link {
+        font-size: 1rem;
+    }
+    .voir-tout-btn {
+        font-size: 1.05rem;
+        padding: 10px 30px;
+    }
+}
+
+@media (max-width: 480px) { /* Smallest screens */
+    .blog-banner-ortoc {
+        min-height: 50vh; /* Further reduce banner height */
+    }
+    .blog-banner-title {
+        font-size: 28px;
+    }
+    .blog-listing-ortoc .blog-title {
+        font-size: 24px;
+        margin: 20px 0 16px 0;
+    }
+    .blog-listing-ortoc .blog-article-img {
+        height: 180px; /* Further adjust image height */
+    }
+    .blog-listing-ortoc .blog-article-title {
+        font-size: 1.2rem;
+    }
+    .blog-listing-ortoc .blog-article-date {
+        font-size: 0.85rem;
+    }
+    .blog-listing-ortoc .blog-article-excerpt {
+        font-size: 0.95rem;
+    }
+    .blog-listing-ortoc .blog-article-link {
+        font-size: 0.95rem;
+    }
+     .voir-tout-btn {
+        font-size: 1rem;
+        padding: 10px 24px;
+        width: calc(100% - 20px); /* Make button more prominent, adjust for padding */
+        margin-left: 10px;
+        margin-right: 10px;
+        box-sizing: border-box;
+    }
+}
+
 .voir-tout-btn {
     display: block;
     margin: 32px auto 0 auto;

@@ -434,6 +434,140 @@
     padding: 0 10px;
   }
 }
+
+@media (max-width: 992px) { /* Adding a general tablet breakpoint */
+    .intro-hebergements {
+        min-height: auto; /* Allow natural height */
+        padding-top: 80px; /* Adjust for navbar */
+        padding-bottom: 40px;
+    }
+    .intro-hebergements h1 {
+        font-size: 48px;
+        line-height: 1.1; /* Ensure readability */
+    }
+    .intro-hebergements h1 span {
+        font-size: 24px;
+    }
+    .intro-hebergements h2 {
+        font-size: 1.5rem;
+    }
+    .section-title { /* For .festival-description and .gallery-section titles */
+        font-size: 48px;
+        line-height: 1.2;
+    }
+    .title_bold:after {
+        height: 22px;
+        margin: -15px -15px 0;
+    }
+    .description-columns {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .description-column {
+        padding: 20px;
+    }
+    .description-column h3 {
+        font-size: 1.3rem;
+    }
+    .agenda-culturel-download a {
+        font-size: 1rem;
+        padding: 12px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+  /* Existing .section-title rule: font-size: 32px; */
+  /* Existing .swiper-slide rule: width: 300px; */
+  /* Existing .curved-image-container rule: height: 420px; */
+
+  .intro-hebergements {
+    padding-top: 60px;
+    padding-bottom: 30px;
+  }
+  .intro-hebergements .container { /* Already has padding: 20px at 900px */
+      padding: 20px 15px;
+  }
+  .intro-hebergements h1 {
+    font-size: 38px;
+  }
+  .intro-hebergements h1 span {
+    font-size: 20px;
+  }
+  .intro-hebergements h2 {
+    font-size: 1.3rem;
+    margin-top: 20px;
+  }
+  .intro-hebergements p {
+    font-size: 1rem; /* Base paragraph size */
+    padding-top: 20px;
+  }
+  .description-column p { /* Assuming p tags in description columns */
+      font-size: 0.95rem;
+  }
+  .agenda-culturel-download a {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+    margin: 0 4px 8px 4px; /* Allow wrapping */
+  }
+  .agenda-culturel-download {
+      flex-wrap: wrap;
+  }
+  .curved-image-container { /* Swiper image container */
+    height: 350px; /* Further reduce for mobile portrait */
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-hebergements h1 {
+    font-size: 30px;
+  }
+  .intro-hebergements h1 span {
+    font-size: 18px;
+  }
+  .intro-hebergements h2 {
+    font-size: 1.1rem;
+    margin-top: 15px;
+  }
+  .intro-hebergements p {
+    font-size: 0.9rem;
+    padding-top: 15px;
+  }
+  .section-title { /* General section titles, building on 768px rule */
+    font-size: 28px;
+  }
+  .title_bold:after {
+    height: 16px;
+    margin: -10px -10px 0;
+  }
+  .description-column {
+      padding: 15px;
+  }
+  .description-column h3 {
+      font-size: 1.15rem;
+  }
+  .description-column p {
+      font-size: 0.9rem;
+  }
+  .agenda-culturel-download a {
+    width: 100%; /* Make download buttons full width */
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .curved-image-container { /* Swiper image container */
+    height: 280px;
+  }
+  .swiper-slide { /* Adjust slide width for very small screens if using 'auto' */
+      width: 260px !important; /* Important if Swiper's internal styles override */
+  }
+  .swiper-button-next, .swiper-button-prev { /* Swiper nav buttons */
+      width: 35px;
+      height: 35px;
+  }
+  .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 16px;
+  }
+}
 </style>
 
 <!-- Section d'introduction -->

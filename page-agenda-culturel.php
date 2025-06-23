@@ -137,6 +137,7 @@ get_header();
     font-size: 1.05rem;
     margin-bottom: 0;
 }
+
 @media (max-width: 900px) {
     .agenda-culturel-list {
         padding: 8px 0 0 0;
@@ -145,17 +146,40 @@ get_header();
         flex-direction: column;
         align-items: stretch;
     }
-    .ecs-event-img {A
+    .ecs-event-img { /* Corrected typo: removed 'A' */
         width: 100%;
         max-width: 100%;
         border-radius: 18px 18px 0 0;
         height: 180px;
+        margin-right: 0; /* Ensure no margin when stacked */
+        margin-bottom: 12px; /* Add some space between image and content */
     }
     .ecs-event-content {
         padding: 18px 16px 16px 16px;
     }
     .ecs-event-title {
         font-size: 1.3rem;
+    }
+}
+
+/* Further adjustments for smaller screens */
+@media (max-width: 767px) { /* General mobile */
+    .agenda-culturel-hero h1 {
+        font-size: 48px; /* Reduce H1 size */
+    }
+    .agenda-culturel-hero p {
+        font-size: 1rem;
+    }
+    .agenda-culturel-download a {
+        font-size: 1rem;
+        padding: 12px 24px;
+        margin: 0 4px 8px 4px; /* Allow wrapping if multiple buttons */
+    }
+    .agenda-culturel-download {
+        flex-wrap: wrap; /* Allow buttons to wrap */
+    }
+    .background-cpt {
+        padding-top: 80px; /* Adjust padding for smaller navbar perhaps */
     }
 }
 
@@ -170,17 +194,78 @@ get_header();
     gap: 32px 24px;
     margin-top: 18px;
 }
+
 @media (max-width: 1000px) {
     .agenda-cards-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
 @media (max-width: 700px) {
     .agenda-cards-grid {
         grid-template-columns: 1fr;
+        gap: 24px 16px; /* Adjust gap */
+    }
+    .agenda-card {
+        padding: 20px 18px; /* Slightly more consistent padding */
+        min-height: auto; /* Allow height to be natural */
+    }
+    .agenda-card-title {
+        font-size: 1.1rem;
+    }
+    .agenda-card-observations {
+        font-size: 0.95rem;
+    }
+    .agenda-card-date {
+        font-size: 1rem;
+        padding: 5px 15px;
+    }
+     .ecs-event-img { /* Specific to ecs-event-card image on small screens */
+        height: 160px; /* Slightly reduce height if needed */
+    }
+    .ecs-event-title { /* Specific to ecs-event-card title */
+        font-size: 1.15rem;
+    }
+    .ecs-event-date, .ecs-event-location, .ecs-event-excerpt {
+        font-size: 0.9rem;
     }
 }
-.agenda-card {
+
+@media (max-width: 480px) { /* Smallest screens */
+    .agenda-culturel-hero h1 {
+        font-size: 36px;
+    }
+    .agenda-culturel-hero p {
+        font-size: 0.9rem;
+    }
+     .agenda-culturel-download a {
+        width: 100%; /* Make download buttons full width */
+        justify-content: center;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .agenda-card { /* Re-adjust padding for smallest screens if needed */
+        padding: 16px 14px;
+    }
+    .agenda-card-title {
+        font-size: 1.05rem;
+    }
+     .agenda-card-observations {
+        font-size: 0.9rem;
+    }
+    .agenda-card-date {
+        font-size: 0.9rem;
+        padding: 4px 12px;
+    }
+    .ecs-event-title {
+        font-size: 1.1rem;
+    }
+    .ecs-event-date, .ecs-event-location, .ecs-event-excerpt {
+        font-size: 0.85rem;
+    }
+}
+
+.agenda-card { /* Original definition of .agenda-card was here, moved it up to group with its media query */
     background: #fff;
     border-radius: 18px;
     box-shadow: 0 8px 32px rgba(12,65,120,0.10);
@@ -237,11 +322,17 @@ get_header();
     font-size: 1.1em;
     margin-right: 2px;
 }
-@media (max-width: 700px) {
+/* This @media rule for .agenda-card was already covered by the more general @media (max-width: 700px) above.
+   Keeping the specific padding adjustment if it's meant to be different or more specific.
+   If the padding `20px 18px` from the general 700px rule is preferred, this can be removed.
+   Original:
+   @media (max-width: 700px) {
     .agenda-card {
         padding: 18px 10px 14px 14px;
     }
-}
+   }
+   Consolidated into the @media (max-width: 700px) block above.
+*/
 </style>
 <div class="background-cpt">
 <!--<div class="agenda-culturel-bg-overlay"></div>-->

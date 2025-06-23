@@ -343,21 +343,15 @@
   animation: slideIn 0.8s ease-out forwards;
 }
 
-/* Animation pour les images */
-@keyframes fadeInScale {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+/* Styles for Swiper gallery (curved-image-container etc.) are removed as they are not used in this page's HTML structure. */
+/*
+.gallery-container {
+  animation: slideIn 0.8s ease-out forwards;
 }
-
 .curved-image-container {
   animation: fadeInScale 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
+*/
 
 /* Styles pour la section des sites naturels */
 .nature-sites-section {
@@ -375,10 +369,7 @@
     z-index: -1;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+/* .container class was here from Swiper section, removed as .container is defined elsewhere or by Bootstrap */
 
 .sites-grid {
   display: grid;
@@ -481,27 +472,145 @@
         }
 
 /* Responsive styles */
+/* Original @media (max-width: 1200px) rules are integrated into the new block below */
+/* Original @media (max-width: 992px) rules are integrated into the new block below */
+/* Original @media (max-width: 768px) rules are integrated into the new block below */
+/* Original @media (max-width: 480px) rules are integrated into the new block below */
+
+
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: 50px;
+    line-height: 1.1;
+  }
+  .section-title {
+    font-size: 50px;
+    line-height: 1.1;
+  }
+  .description-section {
+    /* padding-top: 400px; /* This was causing issues, removed. Specific padding applied when stacked. */
+  }
+}
+
 @media (max-width: 992px) {
-  .sites-grid {
+  .hero-page {
+    flex-direction: column;
+    min-height: auto;
+  }
+  .hero-content {
+    padding: 60px 40px;
+    padding-top: 100px;
+  }
+  .description-section {
+    padding: 40px;
+    padding-top: 20px;
+    align-items: center;
+  }
+  .description-content {
+    max-width: 600px;
+  }
+  .hero-title {
+    font-size: 44px;
+    line-height: 1.1;
+  }
+  .hero-title.small {
+      font-size: 28px;
+  }
+  .section-title {
+    font-size: 40px;
+    line-height: 1.15;
+  }
+  .title_bold:after {
+    height: 22px;
+    margin: -16px -16px 0;
+  }
+  .sites-grid { /* From original 992px rule */
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .nature-sites-section {
+  .hero-content {
+    padding: 40px 20px;
+    padding-top: 80px;
+  }
+  .hero-title {
+    font-size: 38px;
+    line-height: 1.1;
+  }
+   .hero-title.small {
+      font-size: 24px;
+  }
+  .description-block h3 {
+      font-size: 20px;
+      transform: rotate(0deg);
+  }
+   .description-block p {
+    font-size: 0.95rem;
+  }
+  .section-title {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+  .site-info h3 {
+      font-size: 18px;
+  }
+  .site-excerpt {
+      font-size: 13px;
+  }
+   .view-site-btn {
+      font-size: 13px;
+      padding: 7px 12px;
+  }
+  .nature-sites-section { /* From original 768px rule */
     padding: 40px 15px;
   }
-  
-  .sites-grid {
+  .sites-grid { /* From original 768px rule */
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
-  .site-image {
+  .site-image { /* From original 768px rule */
     height: 180px;
   }
 }
 
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 30px 15px;
+    padding-top: 60px;
+  }
+  .hero-title {
+    font-size: 30px;
+    line-height: 1.1;
+  }
+  .hero-title.small {
+      font-size: 20px;
+  }
+  .description-block h3 {
+      font-size: 18px;
+  }
+  .section-title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+  .site-image {
+      height: 160px;
+  }
+  .site-info h3 {
+      font-size: 1rem;
+  }
+  .site-excerpt {
+      font-size: 0.85rem;
+  }
+  .view-site-btn {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+  }
+   .view-all-btn {
+      font-size: 1rem;
+      padding: 10px 24px;
+  }
+}
 </style>
 
 <main class="hero-page">

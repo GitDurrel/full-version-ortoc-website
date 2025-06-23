@@ -591,6 +591,86 @@ get_header();
         width: 40px;
         height: 40px;
     }
+
+    /* Table adjustments for tablet */
+    .festival-table th,
+    .festival-table .cell-content { /* Ensure .cell-content is also targeted */
+        padding: 10px 8px; /* Slightly reduce padding */
+        font-size: 0.9rem; /* Adjust font size */
+    }
+    .festival-table th:first-child,
+    .festival-table td:first-child {
+        width: 35%; /* Give a bit more to first column if needed */
+    }
+    .festival-table th:nth-child(2),
+    .festival-table td:nth-child(2) {
+        width: 30%;
+    }
+    .festival-table th:last-child,
+    .festival-table td:last-child {
+        width: 35%;
+    }
+}
+
+
+@media (max-width: 576px) {
+    /* Existing rules for table font size, padding, and column widths (auto) are good. */
+    /* Ensure .cell-content text is still readable before it scrolls */
+    .festival-hero {
+        padding: 30px 10px;
+    }
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    .section-title {
+        font-size: 26px;
+    }
+    .title_bold:after {
+        height: 16px;
+        margin: -10px -10px 0;
+    }
+    .description-column {
+        padding: 15px;
+    }
+    .description-column h3 {
+        font-size: 1.15rem;
+    }
+     .description-column p {
+        font-size: 0.9rem;
+    }
+    .gallery-image {
+        height: 250px;
+    }
+    .swiper-button-next,
+    .swiper-button-prev { /* Make nav buttons smaller if needed */
+        width: 35px;
+        height: 35px;
+    }
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 375px) { /* Very small screens */
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    .section-title {
+        font-size: 22px;
+    }
+     .title_bold:after {
+        height: 14px;
+        margin: -8px -8px 0;
+    }
+    .gallery-image {
+        height: 200px;
+    }
+    .festival-table th,
+    .festival-table .cell-content {
+        font-size: 0.8rem; /* Further reduce table font if needed */
+        padding: 8px 5px;
+    }
 }
 </style>
 

@@ -4971,3 +4971,8 @@ footer#site_footer .phone_footer a {
 .primary-navigation .sub-menu-toggle[aria-expanded="true"]::after {
   transform: rotate(90deg); /* flèche vers le bas quand ouvert */
 }
+
+/* Remove default Twenty Twenty-One sub-menu toggle within ORTOC off-canvas mobile menu, as ORTOC navbar handles its own toggles */
+.ortoc-navbar-offcanvas .primary-navigation .sub-menu-toggle {
+    display: none !important;
+}

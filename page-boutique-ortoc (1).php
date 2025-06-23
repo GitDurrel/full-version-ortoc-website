@@ -658,6 +658,134 @@ get_header();
 }
 </style>
 
+<!-- General Responsive Adjustments -->
+<style>
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 48px; /* Adjust hero title */
+        line-height: 1.2;
+    }
+    .section-title { /* General section titles */
+        font-size: 48px;
+        line-height: 1.2;
+    }
+    .title_bold:after { /* Adjust underline */
+        margin: -15px -15px 0;
+    }
+    .description-columns {
+        flex-direction: column; /* Stack description columns */
+        gap: 20px;
+    }
+    .product-price {
+        font-size: 28px; /* Adjust product price */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 60vh; /* Shorter hero for mobile */
+    }
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    .section-title {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    .title_bold:after {
+        height: 20px;
+        margin: -12px -12px 0;
+    }
+    .description-column {
+        padding: 20px;
+    }
+    .description-column h3 {
+        font-size: 1.3rem;
+    }
+     .product-price {
+        font-size: 24px;
+    }
+    .chefferies-section, .woocommerce-products-section, .category-filters-container {
+        padding: 20px 10px; /* Reduce padding for sections */
+    }
+
+    /* Sidebar adjustments for mobile */
+    .sidebar {
+        width: 100%; /* Make sidebar full width */
+        border-right: none;
+        border-bottom: 1px solid var(--border-color); /* Add bottom border if stacked above content */
+        padding: 1rem 0; /* Adjust padding */
+        margin-bottom: 20px; /* Space if stacked above */
+    }
+    .sidebar-nav h2 {
+        padding: 0 10px; /* Match section padding */
+    }
+     .sidebar-nav li a {
+        padding: 10px; /* Match section padding */
+    }
+    .main-product-area {
+        padding-left: 0; /* Remove left padding when sidebar is stacked */
+    }
+    .category-filters { /* Ensure horizontal scroll works well */
+        padding-bottom: 12px; /* More space for scrollbar */
+    }
+    .filter-button { /* Adjust filter button padding for smaller screens */
+        padding: 8px 15px !important;
+        font-size: 0.9rem !important;
+    }
+    .filter-button.is-child {
+        padding: 6px 12px !important;
+        font-size: 0.85rem !important;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        height: 50vh;
+    }
+    .hero-content h1 {
+        font-size: 28px;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+     .title_bold:after {
+        height: 16px;
+        margin: -10px -10px 0;
+    }
+    .description-column h3 {
+        font-size: 1.2rem;
+    }
+    .description-column p {
+        font-size: 0.9rem; /* Assuming base is 16px */
+    }
+    .product-price {
+        font-size: 20px;
+    }
+    /* .chefferie-img is already handled at 768px (height: 180px) */
+    /* .chefferie-img { height: 160px; } */ /* Uncomment if further reduction needed */
+
+    .chefferie-info h3 { /* Title within product/chefferie card */
+        font-size: 18px;
+    }
+    .chefferie-excerpt { /* Excerpt within product/chefferie card */
+        font-size: 13px;
+    }
+    .visiter-btn { /* Button within product/chefferie card */
+        font-size: 13px;
+        padding: 7px 12px;
+    }
+     .view-all-btn { /* General "View All" button */
+        font-size: 1rem;
+        padding: 10px 24px;
+    }
+    .filter-button { /* Category filter buttons */
+        padding: 6px 12px !important;
+        font-size: 0.85rem !important;
+    }
+}
+</style>
 
     <div class="hero-section">
         <div class="hero-overlay"></div>

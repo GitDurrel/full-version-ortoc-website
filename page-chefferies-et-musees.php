@@ -220,7 +220,110 @@ get_header();
     .chefferies-hero-logo {
         width: 90px;
     }
+    .chefferies-hero-title {
+        font-size: 2rem; /* Adjust hero title */
+    }
+    .chefferies-hero-title span { /* Sub-text in hero title */
+        font-size: 1rem;
+    }
+    .chefferies-hero-desc {
+        font-size: 1rem; /* Adjust hero description */
+        padding: 0 10px; /* Add some horizontal padding if text is edge-to-edge */
+    }
+    .chefferies-hero-desc.en {
+        font-size: 0.95rem;
+    }
+    /* Styles for the alternative card design, if they need adjustments at this breakpoint */
+    .chefferie-card-title-overlay { /* This is the one for the .chefferie-card-link structure */
+        font-size: 1.1rem; /* Further adjust if needed from 1.2rem */
+        padding: 8px 10px 6px 10px;
+    }
+    .chefferie-img-bg { /* Image for .chefferie-card-link structure */
+        height: 160px; /* Further adjust if needed from 180px */
+    }
 }
+
+@media (max-width: 768px) {
+    /* ... existing rules for grid and image height ... */
+    .section-title { /* Listing section title */
+        font-size: 36px;
+        line-height: 1.2;
+    }
+    .title_bold:after { /* Underline for section title */
+        height: 20px;
+        margin: -12px -12px 0;
+    }
+    .chefferies-hero {
+        padding: 20px 10px; /* Adjust hero padding */
+        margin-top: 10px;
+    }
+    .chefferies-hero-logo {
+        width: 70px; /* Smaller logo */
+        margin-bottom: 10px;
+    }
+    .chefferies-hero-frise {
+        margin: 15px auto; /* Adjust frise margin */
+    }
+     .chefferie-info h3 { /* Title in the primary chefferie cards */
+        font-size: 18px;
+    }
+    .chefferie-excerpt { /* Excerpt in the primary chefferie cards */
+        font-size: 13px;
+    }
+    .visiter-btn { /* Button in the primary chefferie cards */
+        font-size: 13px;
+        padding: 7px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chefferies-hero-title {
+        font-size: 1.75rem;
+    }
+    .chefferies-hero-title span {
+        font-size: 0.9rem;
+    }
+    .chefferies-hero-desc {
+        font-size: 0.9rem;
+    }
+    .chefferies-hero-desc.en {
+        font-size: 0.85rem;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+    .title_bold:after {
+        height: 16px;
+        margin: -10px -10px 0;
+    }
+    .chefferie-img { /* Image height for cards in .chefferies-grid */
+        height: 160px;
+    }
+    .chefferie-info h3 {
+        font-size: 1rem; /* 16px */
+    }
+    .chefferie-excerpt {
+        font-size: 0.85rem; /* ~13px */
+    }
+    .visiter-btn {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+    .view-all-btn { /* General "View All" button */
+        font-size: 1rem;
+        padding: 10px 24px;
+    }
+
+    /* Styles for the alternative card design at smallest screens, if used */
+    .chefferie-card-title-overlay {
+        font-size: 1rem;
+        padding: 6px 8px 4px 8px;
+    }
+    .chefferie-img-bg {
+        height: 140px;
+    }
+}
+
 .chefferies-section {
     padding: 30px 20px;
   overflow: hidden;

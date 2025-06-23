@@ -110,9 +110,62 @@ get_header();
         padding: 18px 4vw 18px 4vw;
     }
     .idees-sejours-title-block {
-        gap: 8px;
+        gap: 8px; /* Existing */
+        align-items: center; /* Better alignment for smaller vertical text */
+    }
+    .idees-sejours-title-main {
+        font-size: 1.7rem; /* Further reduce main title */
+    }
+    .idees-sejours-title-vertical {
+        font-size: 22px;
+        padding: 6px 4px;
+    }
+    .idees-sejours-title-english {
+        font-size: 1rem;
+    }
+    .idees-sejours-hero-texts {
+        margin-top: 20px; /* Adjust spacing */
+        font-size: 0.9rem;
     }
 }
+
+@media (max-width: 480px) {
+    .idees-sejours-title-main {
+        font-size: 1.5rem;
+    }
+    .idees-sejours-title-vertical {
+        font-size: 18px;
+        letter-spacing: 0; /* Reduce letter spacing if too wide */
+    }
+    .idees-sejours-title-english {
+        font-size: 0.9rem;
+    }
+    .idees-sejours-hero-texts {
+        font-size: 0.85rem;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+    .title_bold:after {
+        height: 16px;
+        margin: -10px -10px 0;
+    }
+    .chefferie-img { /* Image height for cards in .chefferies-grid */
+        height: 160px;
+    }
+    .chefferie-info h3 {
+        font-size: 1rem; /* 16px */
+    }
+    .visiter-btn {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+    .view-all-btn { /* General "View All" button */
+      font-size: 1rem;
+      padding: 10px 24px;
+    }
+}
+
 
 /* Grille des idées séjours */
 .idees-sejours-listing-section {
@@ -271,6 +324,14 @@ get_header();
   .chefferies-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+   .section-title { /* Listing section title */
+        font-size: 40px;
+        line-height: 1.2;
+    }
+    .title_bold:after {
+        height: 22px;
+        margin: -15px -15px 0;
+    }
 }
 @media (max-width: 768px) {
   .chefferies-section {
@@ -283,6 +344,20 @@ get_header();
   .chefferie-img {
     height: 180px;
   }
+  .section-title { /* Listing section title */
+        font-size: 34px; /* Further reduce */
+    }
+    .title_bold:after {
+        height: 18px;
+        margin: -12px -12px 0;
+    }
+    .chefferie-info h3 { /* Title in the idea cards */
+        font-size: 18px;
+    }
+    .visiter-btn { /* Button in the idea cards */
+        font-size: 13px;
+        padding: 7px 12px;
+    }
 }
 .chefferie-card {
   background-color: white;

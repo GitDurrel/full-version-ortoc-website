@@ -177,11 +177,161 @@ wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper@8/swiper-bundle.min.js'
   }
   
   .description-section {
-    padding-top: 400px;
+    /* padding-top: 400px; /* REMOVING THIS - will be handled when stacked */
   }
 }
 
 @media (max-width: 992px) {
+  .hero-page {
+    flex-direction: column; /* Existing */
+    min-height: auto; /* Allow natural height */
+  }
+  .hero-content {
+    padding: 60px 40px; /* Existing */
+    padding-top: 100px; /* Existing */
+    text-align: center; /* Center hero text when stacked */
+  }
+   .hero-english { /* Center the english box too */
+    align-self: center;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .description-section { /* Right column in hero, now stacked */
+    padding: 20px 40px 40px 40px; /* Remove excessive top padding, add bottom */
+    align-items: center; /* Existing */
+  }
+  .description-content {
+    max-width: 600px; /* Existing */
+  }
+  .hero-title { /* Main title */
+    font-size: 44px; /* Was 40px */
+    line-height: 1.1;
+  }
+  .hero-subtitle { /* Main subtitle */
+    font-size: 24px; /* Was 22px */
+  }
+  .hero-title.small { /* English title in box */
+      font-size: 1.5rem; /* ~24px */
+  }
+  .hero-subtitle.small { /* English subtitle in box */
+      font-size: 1.05rem; /* ~17px */
+  }
+  .section-title { /* Gallery title */
+    font-size: 40px; /* Existing */
+    line-height: 1.15; /* Adjusted */
+  }
+  .title_bold:after {
+    height: 22px; /* Existing */
+    margin: -16px -16px 0; /* Existing */
+  }
+  .curved-image-container { /* Gallery image container */
+    height: 400px;
+  }
+  .swiper-slide {
+    width: 320px !important;
+  }
+}
+
+/* Consolidated 768px rules */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 40px 20px; /* Existing */
+    padding-top: 80px; /* Existing */
+  }
+  .hero-english {
+    width: auto; /* Existing */
+    padding: 12px 20px; /* Adjust padding */
+  }
+  .hero-title {
+    font-size: 36px; /* Existing */
+    line-height: 1.1; /* Existing */
+  }
+  .hero-subtitle {
+    font-size: 20px; /* Existing */
+  }
+   .hero-title.small {
+    font-size: 1.3rem; /* Existing - ensure consistency */
+  }
+  .hero-subtitle.small {
+    font-size: 1rem; /* Existing - ensure consistency */
+  }
+  .section-title { /* Gallery title */
+    font-size: 32px; /* Consistent with other 768px rules */
+    line-height: 1.15;
+    margin-bottom: 20px; /* Existing */
+  }
+  .title_bold:after {
+    height: 18px; /* Existing */
+    margin: -14px -14px 0; /* Existing */
+  }
+  .description-section {
+    padding: 20px; /* Existing */
+  }
+  .description-content {
+    max-width: 100%; /* Existing */
+  }
+  .description-block p {
+    font-size: 0.95rem; /* Adjust description text */
+  }
+  .gallery-section {
+    padding: 40px 15px; /* Adjust padding */
+  }
+  .curved-image-container {
+    height: 350px; /* Was 420px, consolidating to 350px */
+  }
+  .swiper-slide {
+    width: 280px !important; /* Was 300px, consolidating to 280px */
+  }
+   .swiper-button-next, .swiper-button-prev {
+        width: 35px;
+        height: 35px;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 30px 15px; /* Existing */
+    padding-top: 60px; /* Existing */
+  }
+  .hero-title {
+    font-size: 28px; /* Was 32px */
+    line-height: 1.1;
+  }
+  .hero-subtitle {
+    font-size: 16px; /* Was 18px */
+  }
+  .hero-title.small {
+    font-size: 1.2rem; /* Was 1.3rem */
+  }
+  .hero-subtitle.small {
+    font-size: 0.9rem; /* Was 1rem */
+  }
+  .section-title { /* Gallery title */
+    font-size: 26px; /* Was 32px */
+    line-height: 1.15;
+  }
+  .description-block p {
+    font-size: 0.9rem; /* Existing */
+  }
+  .title_bold:after {
+    height: 16px; /* Existing */
+    margin: -12px -12px 0; /* Existing */
+  }
+  .frize-separation {
+    height: 20px; /* Existing */
+  }
+  .gallery-section { padding: 30px 5px; }
+  .gallery-container { padding: 0 10px; }
+  .curved-image-container { height: 280px; border-radius: 20px;}
+  .swiper-slide { width: 240px !important; }
+}
+
+</style>
+
+<main class="hero-page">
   .hero-page {
     flex-direction: column;
     min-height: auto;

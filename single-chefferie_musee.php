@@ -712,6 +712,154 @@ get_header(); ?>
 .info-card:nth-child(3) { animation-delay: 0.3s; }
 .info-card:nth-child(4) { animation-delay: 0.4s; }
     
+@media (max-width: 992px) {
+  /* Existing .description-content padding rule */
+  .hero-banner {
+    height: auto; /* Allow natural height */
+    min-height: 60vh; /* Ensure decent presence */
+    padding: 40px 15px;
+  }
+  .hero-title {
+    font-size: 48px; /* Was 61px */
+    line-height: 1.1;
+  }
+  .hero-info-item {
+    font-size: 14px;
+  }
+  .hero-info-item i {
+    font-size: 1.1rem;
+  }
+  .section-title { /* For description, gallery, info sections */
+    font-size: 48px;
+    line-height: 1.2;
+  }
+  .title_bold:after {
+    height: 22px;
+    margin: -15px -15px 0;
+  }
+  .description-columns {
+    flex-wrap: wrap; /* Allow wrapping before 768px if needed */
+    gap: 20px;
+  }
+  .description-column {
+    flex-basis: 100%; /* Ensure full width when wrapped before 768px */
+    font-size: 15px; /* Adjust base text */
+    padding: 20px; /* Add padding if not already there */
+  }
+  .description-column h3 {
+    font-size: 1.4rem;
+  }
+  .curved-image-container { /* Gallery image container */
+    height: 400px;
+  }
+  .swiper-slide {
+    width: 320px !important; /* Adjust Swiper slide if needed */
+  }
+  .info-card h4 { font-size: 1.3rem; }
+  .info-card p, .info-card ul li, .attractions-list li { font-size: 0.9rem; }
+}
+
+@media (max-width: 768px) {
+  /* Existing rules for .description-columns, .description-column, .traditional-pole, .section-title (gallery), .swiper-slide, .curved-image-container, .info-cards-container */
+  .hero-banner {
+    min-height: 50vh;
+    padding: 30px 10px;
+  }
+  .hero-title {
+    font-size: 38px;
+  }
+  .hero-info-item {
+    font-size: 13px;
+    gap: 5px; /* Reduce gap for info items */
+  }
+  .hero-info-item i {
+    font-size: 1rem;
+    margin: 0 5px;
+  }
+  .frise-container { height: 20px; margin-bottom: -20px; }
+  .frise-transition { height: 80px; top: -50px; }
+
+  .description-section { padding: 30px 10px 30px; }
+  .description-content { padding: 0 10px; }
+  .traditional-pole { width: 40px; opacity: 0.6; }
+  .section-title {
+    font-size: 32px;
+    line-height: 1.15;
+  }
+   .title_bold:after {
+    height: 18px;
+    margin: -12px -12px 0;
+  }
+  .description-column { /* Ensure padding if not fully covered by general rule */
+    font-size: 0.9rem;
+    padding: 15px;
+  }
+  .description-column h3 {
+    font-size: 1.25rem;
+  }
+
+  .gallery-section { padding: 40px 10px; }
+  .curved-image-container { height: 350px; }
+  .swiper-slide { width: 280px !important; }
+
+  .info-section { padding: 40px 0 60px; }
+  .info-card { padding: 20px 15px; }
+  .info-card h4 { font-size: 1.2rem; }
+  .info-card-icon { font-size: 1.8rem; top: 15px; right: 15px; }
+}
+
+@media (max-width: 480px) {
+  .hero-banner {
+    min-height: 40vh;
+  }
+  .hero-title {
+    font-size: 28px;
+  }
+  .hero-info {
+      gap: 10px;
+      flex-direction: column;
+      align-items: center;
+  }
+  .hero-info-item {
+    font-size: 12px;
+  }
+  .frise-container { display: none; }
+  .description-section { margin-top: 0; padding-top: 20px; }
+  .traditional-pole { display: none; }
+  .description-content { padding: 0 15px; }
+  .section-title {
+    font-size: 26px;
+  }
+   .title_bold:after {
+    height: 16px;
+    margin: -10px -10px 0;
+  }
+  .description-column {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+  .description-column h3 {
+    font-size: 1.1rem;
+  }
+
+  .gallery-section { padding: 30px 5px; }
+  .gallery-container { padding: 0 10px; }
+  .curved-image-container { height: 280px; border-radius: 20px;}
+  .swiper-slide { width: 240px !important; }
+  .swiper-button-next, .swiper-button-prev { width: 30px; height: 30px; }
+  .swiper-button-next:after, .swiper-button-prev:after { font-size: 14px; }
+  .swiper-pagination-bullet { width: 8px; height: 8px; margin: 0 3px; }
+  .swiper-pagination-bullet-active { width: 10px; height: 10px; }
+
+
+  .info-section { padding: 30px 0 40px; }
+  .info-cards-container { gap: 15px; }
+  .info-card { padding: 15px; }
+  .info-card h4 { font-size: 1.1rem; padding-bottom: 10px; margin-bottom: 10px; }
+  .info-card h4 i { margin-right: 8px; }
+  .info-card p, .info-card ul li, .attractions-list li { font-size: 0.85rem; padding-left: 20px; }
+  .info-card ul li::before, .attractions-list li::before { top: 8px; }
+}
    
   </style>
 

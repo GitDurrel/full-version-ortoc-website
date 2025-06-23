@@ -115,6 +115,104 @@
             grid-template-columns: 1fr;
         }
     }
+     @media (max-width: 900px) {
+        /* Existing rules for .partenaires-listing-container and .become_partner stacking */
+        .become_partner_left img {
+            max-width: 100%; /* Allow image to be full width of its container */
+            height: auto; /* Maintain aspect ratio */
+        }
+    }
+
+    @media (max-width: 992px) { /* Tablet */
+        .banner_gradient .banner_content .title_h1 { /* Banner title */
+            font-size: 2.5rem; /* Adjust from default/inherited */
+        }
+        .section-title { /* Partenaires section title */
+            font-size: 48px;
+            line-height: 1.2;
+        }
+        .title_bold:after {
+            height: 22px;
+            margin: -15px -15px 0;
+        }
+        .form-intro { /* Form intro text */
+            font-size: 24px;
+            line-height: 1.4;
+        }
+        .formulaire_reservation .title { /* Titles within form sections */
+            font-size: 1.3rem;
+        }
+    }
+
+    @media (max-width: 768px) { /* Mobile landscape / Large phones */
+        .banner_gradient {
+            min-height: auto; /* Allow natural height */
+            padding: 60px 0;
+        }
+        .banner_gradient .banner_content .title_h1 {
+            font-size: 2rem;
+        }
+        .section-title {
+            font-size: 36px;
+        }
+        .title_bold:after {
+            height: 20px;
+            margin: -12px -12px 0;
+        }
+        .form-intro {
+            font-size: 20px;
+            line-height: 1.3;
+        }
+        .formulaire_reservation .title {
+            font-size: 1.2rem;
+        }
+        .form-control { /* General form controls */
+            font-size: 0.95rem !important; /* Added important as it seems to be overridden by other theme styles */
+            padding: 10px 12px !important;
+        }
+        .partenaires-card {
+            padding: 24px 15px;
+        }
+        .partenaires-name { font-size: 1rem; }
+        .partenaires-desc { font-size: 0.9rem; }
+    }
+
+    @media (max-width: 600px) {
+        /* Existing rule for .partenaires-listing-container (1 column) */
+         .banner_gradient .banner_content .title_h1 {
+            font-size: 1.8rem;
+        }
+    }
+
+    @media (max-width: 480px) { /* Smallest screens */
+        .banner_gradient {
+            padding: 40px 0;
+        }
+        .section-title {
+            font-size: 28px;
+        }
+        .title_bold:after {
+            height: 16px;
+            margin: -10px -10px 0;
+        }
+        .form-intro {
+            font-size: 18px;
+            line-height: 1.3;
+        }
+        .formulaire_reservation .title {
+            font-size: 1.1rem;
+        }
+        .form-control-label { /* Form labels */
+            font-size: 0.9rem;
+        }
+        .partenaires-img {
+            height: 50px; /* Adjust partner logo image height */
+        }
+        .partenaires-name { font-size: 0.95rem; }
+        .partenaires-desc { font-size: 0.85rem; }
+        .partenaires-link { font-size: 0.9rem; }
+    }
+
     .become_partner {
         background: #fff;
         border-radius: 24px;

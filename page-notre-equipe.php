@@ -130,6 +130,101 @@ get_header(); ?>
     .equipe-listing-container {
         grid-template-columns: 1fr;
     }
+    .equipe-hero-title {
+        font-size: 1.8rem;
+    }
+    .equipe-hero-desc {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 992px) { /* General tablet */
+    .equipe-hero {
+        min-height: auto; /* Allow natural height */
+        padding: 40px 15px;
+    }
+    .equipe-hero-title {
+        font-size: 2.2rem;
+    }
+    .equipe-hero-desc {
+        font-size: 1rem; /* 16px */
+    }
+    .section-title { /* Listing section title */
+        font-size: 48px;
+        line-height: 1.2;
+    }
+    .title_bold:after {
+        height: 22px;
+        margin: -15px -15px 0;
+    }
+}
+
+@media (max-width: 768px) { /* Mobile landscape / Large phones */
+    .equipe-hero {
+        padding: 30px 10px;
+    }
+    .equipe-hero-title { /* This overrides the 992px rule, which is fine */
+        font-size: 2rem;
+    }
+    .equipe-hero-desc { /* This overrides the 992px rule */
+        font-size: 0.95rem;
+    }
+    .section-title { /* This overrides the 992px rule */
+        font-size: 36px;
+    }
+    .title_bold:after { /* This overrides the 992px rule */
+        height: 20px;
+        margin: -12px -12px 0;
+    }
+    .equipe-card { /* Card padding and content sizing */
+        padding: 24px 15px;
+    }
+    .equipe-img {
+        width: 140px;
+        height: 140px;
+    }
+    .equipe-name {
+        font-size: 1.2rem;
+    }
+    .equipe-position {
+        font-size: 0.95rem;
+    }
+    .equipe-desc {
+        font-size: 0.9rem;
+    }
+}
+
+
+@media (max-width: 480px) { /* Smallest screens */
+    .equipe-hero {
+        padding: 20px 10px;
+    }
+    .equipe-hero-title { /* Overrides 600px and 768px */
+        font-size: 1.6rem;
+    }
+    .equipe-hero-desc { /* Overrides 600px and 768px */
+        font-size: 0.85rem;
+    }
+    .section-title {
+        font-size: 28px;
+    }
+    .title_bold:after {
+        height: 16px;
+        margin: -10px -10px 0;
+    }
+    .equipe-img {
+        width: 120px;
+        height: 120px;
+    }
+    .equipe-name {
+        font-size: 1.1rem;
+    }
+    .equipe-position {
+        font-size: 0.9rem;
+    }
+    .equipe-desc {
+        font-size: 0.85rem;
+    }
 }
 </style>
 

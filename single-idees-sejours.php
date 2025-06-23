@@ -221,9 +221,160 @@ get_header();
         margin-bottom: 12px;
         margin-right: 0;
         border-radius: 0 0 12px 0;
-        padding: 18px 8px 18px 8px;
+        padding: 20px 10px; /* Existing - adjust from 18px 8px */
+        writing-mode: horizontal-tb; /* Change to horizontal for stacked layout */
+        text-orientation: mixed;
+        width: 100%;
+        text-align: center;
+        min-width: auto; /* Reset min-width */
+        min-height: auto; /* Reset min-height */
     }
 }
+
+@media (max-width: 992px) { /* Tablet general */
+    .idee-sejour-header-img {
+        height: 450px; /* Reduce header image height */
+    }
+    .idee-sejour-title {
+        font-size: 48px; /* Reduce main title */
+    }
+    .idee-sejour-vertical { /* This is the one that becomes horizontal at 900px */
+        font-size: 1.3rem;
+        padding: 24px 10px; /* Adjust padding before it becomes horizontal */
+    }
+    .idee-sejour-pretitle {
+        font-size: 1rem;
+    }
+    .idee-sejour-description {
+        font-size: 1rem; /* equivalent to 16px if base is 16px */
+    }
+    .idee-sejour-infos-card li {
+        font-size: 1rem;
+    }
+    .idee-sejour-excursion-title {
+        font-size: 32px; /* Reduce excursion title */
+    }
+    .idee-sejour-tarif-montant { font-size: 1.15rem; }
+    .idee-sejour-tarif-euro { font-size: 1rem; }
+    .cta-experience-btn { font-size: 1.1rem; padding: 14px 0; }
+}
+
+
+@media (max-width: 768px) { /* Mobile landscape / Large phones */
+    .nos-idees-sejours-container {
+        margin: 20px auto 0 auto; /* Reduce top margin */
+        border-radius: 18px; /* Smaller radius */
+    }
+    .idee-sejour-card {
+        margin-bottom: 40px;
+        border-radius: 18px;
+    }
+    .idee-sejour-header-img {
+        height: 300px;
+        border-radius: 18px 18px 0 0;
+    }
+    .idee-sejour-content {
+        padding: 0; /* Remove parent padding, handle in children */
+    }
+    .idee-sejour-vertical { /* Now horizontal */
+        font-size: 1.2rem;
+        padding: 12px 15px;
+        border-radius: 0; /* Full width bar */
+        margin-bottom: 15px;
+    }
+    .idee-sejour-main {
+        padding: 20px 15px 15px 15px; /* Consistent padding */
+    }
+    .idee-sejour-title {
+        font-size: 38px;
+    }
+    .idee-sejour-pretitle {
+        font-size: 0.95rem;
+    }
+    .idee-sejour-description {
+        font-size: 0.95rem; /* Approx 15px */
+        min-height: auto; /* Remove min-height */
+    }
+    .idee-sejour-infos-card {
+        padding: 10px 15px;
+        gap: 8px 15px;
+    }
+    .idee-sejour-infos-card li {
+        font-size: 0.95rem;
+    }
+    .idee-sejour-side {
+        padding: 0 15px 20px 15px; /* Consistent padding */
+    }
+    .idee-sejour-excursion-card {
+        padding: 15px;
+    }
+    .idee-sejour-excursion-title {
+        font-size: 28px;
+    }
+    .idee-sejour-tarif-montant { font-size: 1.1rem; }
+    .idee-sejour-tarif-euro { font-size: 0.95rem; }
+    .idee-sejour-tarif-base, .idee-sejour-tarif-inclus { font-size: 0.9rem; }
+    .cta-experience-btn { font-size: 1.05rem; padding: 12px 0; }
+}
+
+@media (max-width: 480px) { /* Smallest screens */
+    .nos-idees-sejours-container {
+        margin: 10px auto 0 auto;
+        border-radius: 12px;
+    }
+    .idee-sejour-card {
+        margin-bottom: 30px;
+        border-radius: 12px;
+    }
+    .idee-sejour-header-img {
+        height: 220px;
+        border-radius: 12px 12px 0 0;
+    }
+    .idee-sejour-vertical { /* Horizontal bar */
+        font-size: 1.1rem;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .idee-sejour-main {
+        padding: 15px 10px 10px 10px;
+    }
+    .idee-sejour-title {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .idee-sejour-pretitle {
+        font-size: 0.9rem;
+    }
+    .idee-sejour-description {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+    .idee-sejour-infos-card {
+        font-size: 0.9rem; /* Text inside the list */
+    }
+     .idee-sejour-infos-card li {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    .idee-sejour-side {
+        padding: 0 10px 15px 10px;
+    }
+    .idee-sejour-excursion-card {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+    .idee-sejour-excursion-title {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+    .idee-sejour-tarif-montant { font-size: 1rem; }
+    .idee-sejour-tarif-euro { font-size: 0.9rem; }
+    .idee-sejour-tarif-base, .idee-sejour-tarif-inclus { font-size: 0.85rem; }
+    .idee-sejour-tarif-inclus-label { font-size: 0.9rem; }
+    .cta-experience-btn { font-size: 1rem; padding: 10px 0; }
+    .idee-sejour-side-img { max-height: 300px; }
+}
+
 /* Style élégant pour les listes du champ infos */
 .idee-sejour-infos-card ul {
     padding-left: 24px;

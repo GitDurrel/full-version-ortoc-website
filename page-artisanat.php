@@ -370,37 +370,82 @@ get_header(); ?>
 }
 
 @media (max-width: 480px) {
+  /* .hero-content class not found in this file's HTML, commented out. Assuming .hero-page or .artisanat-header-container serve this purpose. */
+  /*
   .hero-content {
     padding: 30px 15px;
     padding-top: 60px;
   }
+  */
+
+  .hero-page { /* Ensure padding is consistent for hero section */
+      padding: 20px 10px;
+  }
   
+  /* .hero-title class not found directly, .artisanat-main-title (image) and .artisanat-english-title (text) are used */
+  /*
   .hero-title {
     font-size: 32px;
     line-height: 32px;
   }
-  
-  .section-title {
-    font-size: 32px;
-    line-height: 32px;
+  */
+
+  .artisanat-main-title { /* This is an image, scaling is handled by max-width */
+    max-width: 95%; /* Ensure it doesn't overflow its container */
+  }
+
+  .artisanat-english-title {
+    font-size: 16px; /* Further reduce if needed from 18px at 768px */
   }
   
+  .section-title { /* This is the "Découvrez nos produits d'artisanat" title */
+    font-size: 28px;
+    line-height: 1.2; /* Adjust line height */
+  }
+  
+  /* .hero-title.small class not found */
+  /*
   .hero-title.small {
     font-size: 1.3rem;
   }
+  */
   
+  /* .description-block p class not found */
+  /*
   .description-block p {
     font-size: 0.9rem;
   }
+  */
   
-  .title_bold:after {
-    height: 16px;
-    margin: -12px -12px 0;
+  .title_bold:after { /* Underline for .section-title */
+    height: 14px;
+    margin: -10px -10px 0;
+  }
+
+  .artisanat-content-column p { /* Text in the top two columns */
+    font-size: 13px; /* Already set at 768px, ensure it's good */
+    line-height: 1.5;
   }
   
-  .frize-separation {
-    height: 20px;
+  .craft-image { /* Image in product cards */
+    height: 160px;
   }
+  .craft-info h3 { /* Title in product cards */
+    font-size: 18px;
+  }
+  .craft-excerpt { /* Excerpt in product cards */
+    font-size: 13px;
+  }
+  .view-craft-btn { /* Button in product cards */
+    font-size: 13px;
+    padding: 7px 12px;
+  }
+  .view-all-btn { /* "Voir tous les produits" button */
+    font-size: 1rem;
+    padding: 10px 28px;
+  }
+
+  /* .frize-separation { height: 20px; } /* Class not found, and already commented out in original CSS */
 }
 
 /* Corrige le fond violet */
@@ -424,7 +469,7 @@ get_header(); ?>
     }
     .artisanat-main-title {
         max-width: 90vw !important;
-        font-size: 1.2rem !important;
+        /* font-size: 1.2rem !important; /* This is an image, font-size not applicable */
     }
     .artisanat-english-title {
         font-size: 1rem !important;
@@ -449,7 +494,50 @@ get_header(); ?>
         margin-bottom: 6px !important;
     }
     .artisanat-main-title {
-        max-width: 98vw !important;
+        max-width: 98vw !important; /* Image, ensure it scales */
+    }
+}
+
+/* Specific adjustments for very small screens like iPhone 5/SE (320px width) if necessary */
+@media (max-width: 360px) {
+    .hero-page {
+        padding: 15px 5px;
+    }
+    .artisanat-header-frame {
+        padding: 5px !important; /* Override if needed */
+    }
+    .artisanat-english-title {
+        font-size: 14px;
+    }
+    .content-title { /* From @media (max-width: 900px) */
+        font-size: 0.9rem !important;
+    }
+    .artisanat-content-column p { /* From @media (max-width: 900px) */
+        font-size: 0.85rem !important;
+    }
+    .section-title {
+        font-size: 24px;
+    }
+    .title_bold:after {
+        height: 12px;
+        margin: -8px -8px 0;
+    }
+    .craft-image {
+        height: 150px;
+    }
+    .craft-info h3 {
+        font-size: 16px;
+    }
+    .craft-excerpt {
+        font-size: 12px;
+    }
+    .view-craft-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+     .view-all-btn {
+        font-size: 0.9rem;
+        padding: 8px 20px;
     }
 }
 </style>
