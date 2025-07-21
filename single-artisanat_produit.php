@@ -43,7 +43,9 @@ if (have_posts()) :
     height: 80vh;
     min-height: 350px;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #222;
     background-attachment: fixed;
     display: flex;
     flex-direction: column;
@@ -62,6 +64,17 @@ if (have_posts()) :
     inset: 0;
     background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
     z-index: 1;
+}
+
+.artisanat-hero::after {
+    /* Fallback pour les images trop petites : un dégradé sombre sur les côtés */
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(to right, rgba(34,34,34,0.85) 0%, rgba(34,34,34,0.0) 20%, rgba(34,34,34,0.0) 80%, rgba(34,34,34,0.85) 100%);
+    z-index: 2;
 }
 
 .hero-content {
@@ -377,68 +390,76 @@ if (have_posts()) :
         padding: 30px 15px 150px;
         margin-bottom: 80px;
     }
-    
     .description-columns {
         flex-direction: column;
         gap: 20px;
         padding-bottom: 50px;
     }
-    
     .description-column {
         padding: 0;
     }
-    
     .image-title-container {
-        max-width: 250px;
+        max-width: 90vw;
+        margin: -120px auto 10px; /* Décalage plus haut pour tablette */
+        position: relative;
+        z-index: 10;
     }
-    
     .image-title-container img {
         max-width: 100%;
+        height: auto;
     }
-    
     .artisanat-gallery {
         width: 90%;
         bottom: -60px;
     }
-    
     .gallery-swiper {
         /* height: 200px; /* This might be too small if curved-image-container is 420px or 350px. Let Swiper content define height. */
     }
-    .artisanat-hero { /* Added from proposed changes */
-        height: 60vh;
-        min-height: 250px;
+    .artisanat-hero {
+        height: 50vh;
+        min-height: 300px;
+        min-width: 100vw;
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-color: #222 !important;
+        padding: 0 !important;
+        position: relative;
+        overflow: hidden;
     }
-    .hero-title { /* Added from proposed changes */
+    .hero-title {
         font-size: 2rem;
     }
-    .artisanat-content-wrapper { /* Consolidated padding from proposed changes */
+    .artisanat-content-wrapper {
         padding: 20px 15px 80px;
         margin-bottom: 0;
     }
-    .image-title-container { /* Adjusted from 250px */
-        max-width: 220px;
-        margin: -100px auto 20px;
+    .image-title-container {
+        max-width: 90vw;
+        margin: -120px auto 10px;
+        position: relative;
+        z-index: 10;
     }
-    .title-english { /* Added from proposed changes */
+    .title-english {
         font-size: 1.1rem;
     }
-    .description-francais, .description-anglais { /* Added from proposed changes */
+    .description-francais, .description-anglais {
         font-size: 0.95rem;
     }
-    .gallery-section { /* Added from proposed changes */
+    .gallery-section {
         padding: 30px 0;
     }
-    .curved-image-container { /* Adjusted from 420px */
+    .curved-image-container {
         height: 350px;
     }
-    .swiper-slide { /* Adjusted from 300px */
+    .swiper-slide {
         width: 280px !important;
     }
-    .swiper-button-next, .swiper-button-prev { /* Added from proposed changes */
+    .swiper-button-next, .swiper-button-prev {
         width: 35px;
         height: 35px;
     }
-    .swiper-button-next:after, .swiper-button-prev:after { /* Added from proposed changes */
+    .swiper-button-next:after, .swiper-button-prev:after {
         font-size: 16px;
     }
 }
@@ -474,10 +495,15 @@ if (have_posts()) :
 }
 
 
-@media (max-width: 480px) { /* Smallest screens - New rules from proposal */
+@media (max-width: 480px) {
     .artisanat-hero {
-        height: 50vh;
-        padding: 20px 10px;
+        height: 38vh;
+        min-height: 220px;
+        min-width: 100vw;
+        background-position: center center !important;
+        background-size: cover !important;
+        background-repeat: no-repeat !important;
+        background-color: #222 !important;
     }
     .hero-title {
         font-size: 1.75rem;
@@ -486,8 +512,10 @@ if (have_posts()) :
         padding: 15px 10px 60px;
     }
     .image-title-container {
-        max-width: 180px;
-        margin: -80px auto 15px;
+        max-width: 98vw;
+        margin: -80px auto 5px; /* Décalage plus haut pour mobile */
+        position: relative;
+        z-index: 10;
     }
     .title-english {
         font-size: 1rem;
@@ -522,12 +550,40 @@ if (have_posts()) :
     margin: 30px auto;
     max-width: 800px;
 }
+
+.artisanat-hero-img-mobile {
+    display: none;
+}
+@media (max-width: 768px) {
+    .artisanat-hero {
+        background-image: none !important;
+        background-color: #222 !important;
+        padding: 0 !important;
+        position: relative;
+        overflow: hidden;
+    }
+    .artisanat-hero-img-mobile {
+        display: block;
+        width: 100vw;
+        max-width: 100vw;
+        height: 100%;
+        object-fit: cover;
+        margin: 0 auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        border-radius: 0;
+    }
+}
 </style>
 
 <!-- Enveloppe principale pour tout le contenu -->
 <div class="artisanat-container">
     <!-- SECTION I - Hero avec image principale et texte -->
-    <section class="artisanat-hero" style="background-image: url('<?php echo esc_url($image_principale); ?>');"></section>
+    <section class="artisanat-hero" style="background-image: url('<?php echo esc_url($image_principale); ?>');">
+      <img class="artisanat-hero-img-mobile" src="<?php echo esc_url($image_principale); ?>" alt="Image principale artisanat" />
+    </section>
 
     <!-- SECTION II - Contenu principal avec descriptions-->
     <section class="artisanat-content-wrapper">

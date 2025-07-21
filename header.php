@@ -91,6 +91,20 @@ document.addEventListener('DOMContentLoaded', function() {
       offcanvasMenu.classList.remove('active'); // Remove 'active' class to hide the menu
     });
   }
+
+  // --- Sous-menus mobiles ORTOC ---
+  if (offcanvasMenu) {
+    offcanvasMenu.querySelectorAll('li.menu-item-has-children > a').forEach(function(parentLink) {
+      parentLink.addEventListener('click', function(e) {
+        var li = this.parentElement;
+        // Si le sous-menu existe
+        if (li.querySelector('ul.sub-menu')) {
+          e.preventDefault();
+          li.classList.toggle('submenu-open');
+        }
+      });
+    });
+  }
 });
 </script>
 <?php // The HTML comment "<!-- /ORTOC Nouvelle Navbar Responsive -->" was here, replaced by PHP comments or removed if redundant ?>

@@ -252,7 +252,7 @@ get_header();
   overflow: hidden;
   border: 5px solid #fff;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  /* pour que le texte l’enveloppe */
+  /* pour que le texte l'enveloppe */
   shape-outside: circle(50%);
   -webkit-shape-outside: circle(50%);
   clip-path: circle(50%);
@@ -504,6 +504,11 @@ get_header();
     .plat-title {
         font-size: 1.4rem; /* Approx 22px */
     }
+    /* Ajout marges latérales pour le texte d'intro sur tablette/mobile */
+    .intro-content, .french-intro, .english-intro {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -523,6 +528,12 @@ get_header();
     }
     .intro-content {
         padding-top: 20px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .french-intro, .english-intro {
+        padding-left: 12px;
+        padding-right: 12px;
     }
     .section-title { /* From 48px (at 992px) */
         font-size: 40px;
@@ -564,6 +575,12 @@ get_header();
     .intro-content {
         padding-top: 10px;
         gap: 10px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    .french-intro, .english-intro {
+        padding-left: 12px;
+        padding-right: 12px;
     }
     .french-intro, .english-intro {
         font-size: 13px; /* Was 14px */

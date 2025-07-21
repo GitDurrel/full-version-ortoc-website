@@ -329,47 +329,44 @@ wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper@8/swiper-bundle.min.js'
   .swiper-slide { width: 240px !important; }
 }
 
-</style>
+/* --- DÉPLACEMENT DU CSS QUI ÉTAIT EN DEHORS DES BALISES STYLE --- */
+.hero-page {
+  flex-direction: column;
+  min-height: auto;
+}
 
-<main class="hero-page">
-  .hero-page {
-    flex-direction: column;
-    min-height: auto;
-  }
-  
-  .hero-content {
-    padding: 60px 40px;
-    padding-top: 100px;
-  }
-  
-  .description-section {
-    padding: 40px;
-    padding-top: 0;
-    align-items: center;
-  }
-  
-  .description-content {
-    max-width: 600px;
-  }
-  
-  .hero-title {
-    font-size: 40px;
-    line-height: 40px;
-  }
-  
-  .hero-subtitle {
-    font-size: 22px;
-  }
-  
-  .section-title {
-    font-size: 40px;
-    line-height: 40px;
-  }
-  
-  .title_bold:after {
-    height: 22px;
-    margin: -16px -16px 0;
-  }
+.hero-content {
+  padding: 60px 40px;
+  padding-top: 100px;
+}
+
+.description-section {
+  padding: 40px;
+  padding-top: 0;
+  align-items: center;
+}
+
+.description-content {
+  max-width: 600px;
+}
+
+.hero-title {
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.hero-subtitle {
+  font-size: 22px;
+}
+
+.section-title {
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.title_bold:after {
+  height: 22px;
+  margin: -16px -16px 0;
 }
 
 @media (max-width: 768px) {
@@ -377,35 +374,28 @@ wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper@8/swiper-bundle.min.js'
     padding: 40px 20px;
     padding-top: 80px;
   }
-  
   .hero-english {
     width: auto; /* Même en mode mobile, garde la largeur selon le contenu */
   }
-  
   .hero-title {
     font-size: 36px;
     line-height: 36px;
   }
-  
   .hero-subtitle {
     font-size: 20px;
   }
-  
   .section-title {
     font-size: 36px;
     line-height: 36px;
     margin-bottom: 20px;
   }
-  
   .title_bold:after {
     height: 18px;
     margin: -14px -14px 0;
   }
-  
   .description-section {
     padding: 20px;
   }
-  
   .description-content {
     max-width: 100%;
   }
@@ -416,38 +406,30 @@ wp_enqueue_script('swiper-js', 'https://unpkg.com/swiper@8/swiper-bundle.min.js'
     padding: 30px 15px;
     padding-top: 60px;
   }
-  
   .hero-title {
     font-size: 32px;
     line-height: 32px;
   }
-  
   .hero-subtitle {
     font-size: 18px;
   }
-  
   .section-title {
     font-size: 32px;
     line-height: 32px;
   }
-  
   .hero-title.small {
     font-size: 1.3rem;
   }
-  
   .hero-subtitle.small {
     font-size: 1rem;
   }
-  
   .description-block p {
     font-size: 0.9rem;
   }
-  
   .title_bold:after {
     height: 16px;
     margin: -12px -12px 0;
   }
-  
   .frize-separation {
     height: 20px;
   }

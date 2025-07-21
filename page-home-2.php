@@ -985,7 +985,7 @@ get_header();
     /* Existing .contact-title and icon rules */
 
     .parallax-header {
-        min-height: 60vh; /* Further reduce */
+        min-height: 90vh; /* Further reduce */
         padding-bottom: 150px; /* Ensure space for potentially larger vw logo */
     }
     .title_width_gradient .title_h2 {
@@ -1039,7 +1039,7 @@ get_header();
 
 @media (max-width: 480px) {
     .parallax-header {
-        min-height: 50vh;
+        min-height: 70vh;
     }
     .logo-animation { /* Fine-tune if needed, vw units might be small here */
         min-width: 180px;
@@ -1330,7 +1330,7 @@ get_header();
       <div class="container newsletter-center">
         <img src="https://tourismeouestcameroun.com/wp-content/uploads/2025/05/Plan-de-travail-1.jpg" alt="Catalogue Tourisme" class="newsletter-img">
         <br><br>
-        <a href="mailto:ot.ouestcameroun@yahoo.com?subject=Commande%20Catalogue%20Tourisme%20Ouest%20Cameroun&body=Bonjour%2C%0D%0AJe souhaite commander le catalogue Tourisme Ouest Cameroun.%0D%0AMerci de me recontacter pour finaliser la commande." class="cta-catalogue-btn">Commander le vôtre maintenant</a>
+        <a href="mailto:ot.ouestcameroun@yahoo.fr?subject=Commande%20Catalogue%20Tourisme%20Ouest%20Cameroun&body=Bonjour%2C%0D%0AJe souhaite commander le catalogue Tourisme Ouest Cameroun.%0D%0AMerci de me recontacter pour finaliser la commande." class="cta-catalogue-btn">Commander le vôtre maintenant</a>
       </div>
     </section>
 
@@ -1373,86 +1373,101 @@ get_header();
     </section>
 
 
-    <!-- Section Contact/Visitez-nous -->
-    <section class="contact-section" id="contact">
-        <div class="container contact-content">
-            <h2 class="contact-title">
-                <span class="small_title">Visitez nous quand</span>
-                <span class="bold_title">vous voulez</span>
-            </h2>
-            <div class="row mt-5">
-                <div class="col-md-6 mb-4">
-                    <p class="lead contact-lead">L'Office Régional du Tourisme de l'Ouest Cameroun est situé à Bafoussam près du stade omnisport Tocket entre le carrefour saint Thomas et le carrefour Socada.</p>
-                    <div class="contact-cards-row">
-                        <!-- Retrouvez-nous -->
-                        <div class="contact-info">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Retrouvez-nous</h4>
-                                <p class="contact-text">Bafoussam, Cameroun</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Appelez-nous -->
-                        <div class="contact-info">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h4>Appelez-nous</h4>
-                                <p class="contact-text"><a href="tel:+237697687441">Appelez-nous maintenant</a></p>
-                            </div>
-                        </div>
-                        
-                        <!-- Écrivez-nous -->
-                        <div class="contact-info">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4>Écrivez-nous</h4>
-                                <p class="contact-text">ot.ouestcameroun@yahoo.com</p>
-                            </div>
+     <!-- ✅ Traitement PHP AVANT la section -->
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['contact_submit'])) {
+    $nom = sanitize_text_field($_POST['nom']);
+    $prenom = sanitize_text_field($_POST['prenom']);
+    $email = sanitize_email($_POST['email']);
+    $telephone = sanitize_text_field($_POST['telephone']);
+    $message = sanitize_textarea_field($_POST['message']);
+
+    $to = 'ot.ouestcameroun@yahoo.fr';
+    $subject = 'Nouveau message du site';
+    $body = "Nom: $nom\nPrénom: $prenom\nEmail: $email\nTéléphone: $telephone\n\nMessage:\n$message";
+    $headers = array('Content-Type: text/plain; charset=UTF-8');
+
+    if (wp_mail($to, $subject, $body, $headers)) {
+        echo '<p style="color: green;">Merci ! Votre message a été envoyé avec succès.</p>';
+    } else {
+        echo '<p style="color: red;">Une erreur s\'est produite. Veuillez réessayer plus tard.</p>';
+    }
+}
+?>
+
+<!-- ✅ TA SECTION CONTACT mise à jour -->
+<section class="contact-section" id="contact">
+    <div class="container contact-content">
+        <h2 class="contact-title">
+            <span class="small_title">Visitez nous quand</span>
+            <span class="bold_title">vous voulez</span>
+        </h2>
+        <div class="row mt-5">
+            <div class="col-md-6 mb-4">
+                <p class="lead contact-lead">
+                    L'Office Régional du Tourisme de l'Ouest Cameroun est situé à Bafoussam près du stade omnisport Tocket entre le carrefour saint Thomas et le carrefour Socada.
+                </p>
+                <div class="contact-cards-row">
+                    <div class="contact-info">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Retrouvez-nous</h4>
+                            <p class="contact-text">Bafoussam, Cameroun</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="contact-form">
-                        <h2>Contactez-nous</h2>
-                        <form>
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label for="nom">Nom</label>
-                                    <input type="text" class="form-control" id="nom" placeholder="Entrez votre Nom">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label for="prenom">Prénom</label>
-                                    <input type="text" class="form-control" id="prenom" placeholder="Entrez votre Prénom">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Entrez votre Email">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label for="telephone">Téléphone</label>
-                                    <input type="tel" class="form-control" id="telephone" placeholder="Entrez votre Téléphone">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea class="form-control" id="message" rows="5" placeholder="En quoi pouvons nous aider?"></textarea>
-                            </div>
-                            <button type="button" class="contact-submit-btn" onclick="sendEmail()">Envoyer <i class="fas fa-arrow-right ml-2"></i></button>
-                        </form>
+                    <div class="contact-info">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h4>Appelez-nous</h4>
+                            <p class="contact-text"><a href="tel:+237697687441">Appelez-nous maintenant</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Écrivez-nous</h4>
+                            <p class="contact-text"><a href="mailto:ot.ouestcameroun@yahoo.fr">ot.ouestcameroun@yahoo.fr</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="contact-form">
+                    <h2>Contactez-nous</h2>
+                    <form method="post" action="#contact">
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="nom">Nom</label>
+                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez votre Nom" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="prenom">Prénom</label>
+                                <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrez votre Prénom" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre Email" required>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="telephone">Téléphone</label>
+                                <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="Entrez votre Téléphone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="En quoi pouvons nous aider?" required></textarea>
+                        </div>
+                        <a href="#" class="contact-submit-btn" id="contactMailBtn">Envoyer <i class="fas fa-arrow-right ml-2"></i></a>
+                    </form>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- MODALE AGENDA EVENEMENTS -->
     <?php
@@ -1536,21 +1551,60 @@ get_header();
     <div id="souvenir-float-box" style="display:none; position:fixed; right:32px; bottom:32px; z-index:9998; background:#0c4178; color:#fff; border-radius:18px; box-shadow:0 4px 24px rgba(12,65,120,0.18); padding:24px 32px; max-width:400px; width:90vw; text-align:left; align-items:center; gap:18px;">
       <div style="font-family:Fredoka,sans-serif; font-size:1.13rem; font-weight:700; margin-bottom:10px;">Plongez dans l'art et la culture de l'Ouest Cameroun – <br> <span style='color:#FFD700;'>Découvrez nos objets uniques dès maintenant !</span></div>
       <a href="/boutique" style="display:inline-block; background:#FFD700; color:#0c4178; font-family:Fredoka,sans-serif; font-weight:700; font-size:1.08rem; padding:10px 28px; border-radius:8px; text-decoration:none; margin-top:10px; box-shadow:0 2px 8px rgba(12,65,120,0.08); transition:background 0.2s,color 0.2s;">Accéder à la boutique</a>
-      <button onclick="document.getElementById('souvenir-float-box').style.display='none';" style="position:absolute; top:8px; right:12px; background:none; border:none; color:#FFD700; font-size:1.5rem; cursor:pointer;">&times;</button>
+      <button onclick="closeSouvenirBox()" style="position:absolute; top:8px; right:12px; background:none; border:none; color:#FFD700; font-size:1.5rem; cursor:pointer;">&times;</button>
     </div>
     <script>
-    // Affiche la boîte flottante à mi-scroll
-    window.addEventListener('scroll', function() {
-      var box = document.getElementById('souvenir-float-box');
-      if (!box) return;
-      var scrollY = window.scrollY || window.pageYOffset;
-      var docHeight = document.body.scrollHeight - window.innerHeight;
-      if (scrollY > docHeight/2) {
-        box.style.display = 'flex';
-      } else {
-        box.style.display = 'none';
-      }
-    });
+    // Fonction pour fermer définitivement la boîte flottante
+const nomInput = document.getElementById('nom');
+const prenomInput = document.getElementById('prenom');
+const emailInput = document.getElementById('email');
+const telephoneInput = document.getElementById('telephone');
+const messageInput = document.getElementById('message');
+const mailBtn = document.getElementById('contactMailBtn');
+
+function getMailtoLink() {
+  const nom = encodeURIComponent(nomInput.value);
+  const prenom = encodeURIComponent(prenomInput.value);
+  const email = encodeURIComponent(emailInput.value);
+  const telephone = encodeURIComponent(telephoneInput.value);
+  const message = encodeURIComponent(messageInput.value);
+
+  return `mailto:ot.ouestcameroun@yahoo.fr?subject=Demande d'information&body=Nom : ${nom}%0D%0APrénom : ${prenom}%0D%0AEmail : ${email}%0D%0ATéléphone : ${telephone}%0D%0AMessage : ${message}`;
+}
+
+mailBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  window.location.href = getMailtoLink();
+});
+
+function closeSouvenirBox() {
+  var box = document.getElementById('souvenir-float-box');
+  if (box) {
+    box.style.display = 'none';
+    // Mémoriser que l'utilisateur a fermé la boîte
+    localStorage.setItem('souvenirBoxClosed', 'true');
+  }
+}
+
+// Affiche la boîte flottante à mi-scroll seulement si elle n'a pas été fermée
+window.addEventListener('scroll', function() {
+  var box = document.getElementById('souvenir-float-box');
+  if (!box) return;
+  
+  // Vérifier si l'utilisateur a déjà fermé la boîte
+  var isClosed = localStorage.getItem('souvenirBoxClosed');
+  if (isClosed === 'true') {
+    return; // Ne pas afficher si déjà fermée
+  }
+  
+  var scrollY = window.scrollY || window.pageYOffset;
+  var docHeight = document.body.scrollHeight - window.innerHeight;
+  if (scrollY > docHeight/2) {
+    box.style.display = 'flex';
+  } else {
+    box.style.display = 'none';
+  }
+});
     </script>
 
 

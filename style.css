@@ -361,43 +361,35 @@ header#site_header .site_logo img{
 
 /* Mobile Sub-menu Indicator for Off-Canvas */
 .ortoc-navbar-offcanvas .ortoc-navbar-list li.menu-item-has-children > a {
-    /* padding-right is implicitly handled by the absolute positioning of the arrow */
+    position: relative;
+    cursor: pointer;
 }
 
 .ortoc-navbar-offcanvas .ortoc-navbar-list li.menu-item-has-children > a::after {
     content: '';
     display: inline-block;
-    width: 8px; 
+    width: 8px;
     height: 8px;
     border-style: solid;
-    border-color: #fff; 
+    border-color: #fff;
     border-width: 0 2px 2px 0;
-    transform: rotate(45deg); 
+    transform: rotate(45deg);
     position: absolute;
-    right: 15px; 
+    right: 15px;
     top: 50%;
-    margin-top: -6px; /* Adjusted for 8px height + 2px border = approx 5-6px */
+    margin-top: -6px;
     transition: transform 0.2s ease;
 }
 
-/* Optional: Style for when a submenu is open (requires a class like .submenu-open on the <li> or <a>) */
 .ortoc-navbar-offcanvas .ortoc-navbar-list li.menu-item-has-children.submenu-open > a::after {
-    transform: rotate(-135deg); 
-    margin-top: -3px; /* Adjust if needed for new rotation */
+    transform: rotate(-135deg);
+    margin-top: -3px;
 }
 
-/* Sub-menu Styling for Off-Canvas (Mobile) */
 .ortoc-navbar-offcanvas .ortoc-navbar-list ul.sub-menu {
-  display: none; /* Hidden by default */
-  list-style: none;
-  padding-left: 20px; /* Indent submenu items further */
-  margin: 8px 0 10px 0; /* Adjusted margins */
-  background-color: rgba(0,0,0,0.2); /* Slightly different background for visual distinction */
-  border-radius: 4px;
+    display: none;
 }
 
-/* Show submenu when active */
-.ortoc-navbar-offcanvas .ortoc-navbar-list ul.sub-menu.active,
 .ortoc-navbar-offcanvas .ortoc-navbar-list li.menu-item-has-children.submenu-open > ul.sub-menu {
     display: block;
 }
@@ -4975,4 +4967,34 @@ footer#site_footer .phone_footer a {
 /* Remove default Twenty Twenty-One sub-menu toggle within ORTOC off-canvas mobile menu, as ORTOC navbar handles its own toggles */
 .ortoc-navbar-offcanvas .primary-navigation .sub-menu-toggle {
     display: none !important;
+}
+
+/* Force la disparition de tous les boutons + et - natifs ou plugins dans tous les menus */
+.ortoc-navbar-offcanvas .sub-menu-toggle,
+.ortoc-navbar-offcanvas .icon-plus,
+.ortoc-navbar-offcanvas .icon-minus,
+.sub-menu-toggle,
+.icon-plus,
+.icon-minus {
+  display: none !important;
+}
+
+.ortoc-navbar-list li.menu-item-has-children > a {
+  padding-right: 30px; /* Espace pour le chevron */
+}
+.ortoc-navbar-offcanvas .ortoc-navbar-list li.menu-item-has-children > a::after {
+  right: 10px; /* Décale le chevron un peu plus à droite */
+}
+.ortoc-navbar-offcanvas .ortoc-navbar-list ul.sub-menu li {
+  list-style: none;
+}
+.ortoc-navbar-offcanvas .ortoc-navbar-list ul.sub-menu {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ortoc-navbar-offcanvas .ortoc-navbar-list li a,
+.ortoc-navbar-offcanvas .ortoc-navbar-list ul.sub-menu li a {
+  padding-left: 16px;
+  padding-right: 16px;
 }
