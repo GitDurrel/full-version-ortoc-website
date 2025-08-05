@@ -232,6 +232,18 @@ get_header();
         transform: scale(1.05);
     }
 
+    .quantity-btn:disabled {
+        background-color: #e0e0e0;
+        color: #999;
+        cursor: not-allowed;
+        border-color: #ccc;
+    }
+
+    .quantity-btn:disabled:hover {
+        background-color: #e0e0e0;
+        transform: none;
+    }
+
     .quantity-display {
         min-width: 40px;
         text-align: center;
@@ -421,17 +433,27 @@ class Cart {
         this.showNotification('Produit retiré du panier !');
     }
 
-    updateQuantity(productId, newQuantity) {
-        const item = this.items.find(item => item.id === productId);
-        if (item) {
-            if (newQuantity <= 0) {
-                this.removeItem(productId);
+    updateQuantity(productId, action) {
+        const item = this.items.find(item => item.id == productId);
+        if (!item) return;
+
+        if (action === 'increase') {
+            if (item.quantity < item.stock) {
+                item.quantity++;
             } else {
-                item.quantity = newQuantity;
-                this.saveCart();
-                this.updateDisplay();
+                this.showNotification('Quantité maximale en stock atteinte !', 'error');
+                return;
+            }
+        } else if (action === 'decrease') {
+            item.quantity--;
+            if (item.quantity <= 0) {
+                this.removeItem(productId);
+                return;
             }
         }
+
+        this.saveCart();
+        this.updateDisplay();
     }
 
     getTotal() {
@@ -484,6 +506,9 @@ class Cart {
                  <span class="cart-item-promo-price">${this.formatPrice(item.promoPrice)} FCFA</span>` :
                 `<span class="cart-item-price">${this.formatPrice(item.price)} FCFA</span>`;
 
+            const isStockLimited = typeof item.stock !== 'undefined' && item.stock !== null;
+            const canIncrease = !isStockLimited || item.quantity < item.stock;
+
             return `
                 <div class="cart-item" data-product-id="${item.id}">
                     <div class="cart-item-image">
@@ -496,14 +521,15 @@ class Cart {
                         <div class="cart-item-price">
                             ${priceDisplay}
                         </div>
+                        ${isStockLimited ? `<p style="font-size: 12px; color: #777;">Stock disponible : ${item.stock}</p>` : ''}
                     </div>
                     <div class="cart-item-actions">
                         <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="cart.updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                            <button class="quantity-btn" data-product-id="${item.id}" data-action="decrease">-</button>
                             <span class="quantity-display">${item.quantity}</span>
-                            <button class="quantity-btn" onclick="cart.updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                            <button class="quantity-btn" data-product-id="${item.id}" data-action="increase" ${canIncrease ? '' : 'disabled'}>+</button>
                         </div>
-                        <button class="remove-item" onclick="cart.removeItem(${item.id})">
+                        <button class="remove-item" data-product-id="${item.id}">
                             <i class="fas fa-trash"></i> Supprimer
                         </button>
                     </div>
@@ -549,14 +575,14 @@ class Cart {
         return new Intl.NumberFormat('fr-FR').format(price);
     }
 
-    showNotification(message) {
-        // Créer une notification temporaire
+    showNotification(message, type = 'success') {
         const notification = document.createElement('div');
+        const bgColor = type === 'success' ? 'var(--success-green)' : 'var(--danger-red)';
         notification.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
-            background: var(--success-green);
+            background: ${bgColor};
             color: white;
             padding: 12px 20px;
             border-radius: 8px;
@@ -569,99 +595,111 @@ class Cart {
         notification.textContent = message;
         document.body.appendChild(notification);
         
-        // Animation d'entrée
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
         }, 100);
         
-        // Suppression automatique
         setTimeout(() => {
             notification.style.transform = 'translateX(100%)';
             setTimeout(() => {
-                document.body.removeChild(notification);
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
             }, 300);
         }, 3000);
     }
 
     checkout() {
         if (this.items.length === 0) {
-            alert('Votre panier est vide !');
+            this.showNotification('Votre panier est vide !', 'error');
             return;
         }
 
-        // Afficher un formulaire pour les infos utilisateur
         const formHtml = `
-            <div id="checkout-modal" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:9999;">
-                <form id="user-info-form" style="background:#fff;padding:30px;border-radius:12px;min-width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
-                    <h2 style="margin-bottom:20px;">Vos informations</h2>
-                    <input type="text" name="name" placeholder="Nom complet" required style="width:100%;margin-bottom:10px;padding:8px;">
-                    <input type="email" name="email" placeholder="Email" required style="width:100%;margin-bottom:10px;padding:8px;">
-                    <input type="tel" name="phone" placeholder="Téléphone" required style="width:100%;margin-bottom:10px;padding:8px;">
-                    <textarea name="message" placeholder="Message (optionnel)" style="width:100%;margin-bottom:10px;padding:8px;"></textarea>
-                    <button type="submit" style="background:var(--primary-blue);color:#fff;padding:10px 20px;border:none;border-radius:6px;font-weight:700;">Envoyer la commande</button>
-                    <button type="button" onclick="document.getElementById('checkout-modal').remove()" style="margin-left:10px;">Annuler</button>
+            <div id="checkout-modal" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999;">
+                <form id="user-info-form" style="background:var(--white);padding:30px;border-radius:12px;width:90%;max-width:450px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
+                    <h2 style="margin-bottom:20px; color: var(--primary-blue); font-family: Fredoka, sans-serif;">Vos informations</h2>
+                    <input type="text" id="checkout-name" placeholder="Nom complet" required style="width:100%;margin-bottom:12px;padding:10px;border:1px solid #ccc; border-radius:6px;">
+                    <input type="email" id="checkout-email" placeholder="Email" required style="width:100%;margin-bottom:12px;padding:10px;border:1px solid #ccc; border-radius:6px;">
+                    <input type="tel" id="checkout-phone" placeholder="Téléphone" required style="width:100%;margin-bottom:12px;padding:10px;border:1px solid #ccc; border-radius:6px;">
+                    <textarea id="checkout-message" placeholder="Message (optionnel)" style="width:100%;margin-bottom:20px;padding:10px;border:1px solid #ccc; border-radius:6px;min-height:80px;"></textarea>
+                    <div style="display:flex; gap:10px; justify-content:flex-end;">
+                        <button type="button" id="cancel-checkout" style="background:#f1f1f1;color:#333;padding:10px 20px;border:none;border-radius:6px;font-weight:600;">Annuler</button>
+                        <button type="submit" style="background:var(--primary-blue);color:var(--white);padding:10px 20px;border:none;border-radius:6px;font-weight:700;">Envoyer la commande</button>
+                    </div>
                 </form>
             </div>
         `;
         document.body.insertAdjacentHTML('beforeend', formHtml);
 
-        document.getElementById('user-info-form').onsubmit = (e) => {
+        const modal = document.getElementById('checkout-modal');
+        const form = document.getElementById('user-info-form');
+        const cancelBtn = document.getElementById('cancel-checkout');
+
+        const closeModal = () => {
+            modal.remove();
+        };
+
+        cancelBtn.onclick = closeModal;
+
+        form.onsubmit = (e) => {
             e.preventDefault();
-            const form = e.target;
-            const userInfo = {
-                name: form.name.value,
-                email: form.email.value,
-                phone: form.phone.value,
-                message: form.message.value,
-            };
-            fetch('send-order.php', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    user: userInfo,
-                    cart: this.items
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                alert(data.success ? 'Commande envoyée ! Nous vous contacterons rapidement.' : 'Erreur lors de l\'envoi.');
-                document.getElementById('checkout-modal').remove();
-                if (data.success) this.clearCart();
-            })
-            .catch(() => {
-                alert('Erreur lors de l\'envoi.');
-                document.getElementById('checkout-modal').remove();
+
+            const name = document.getElementById('checkout-name').value;
+            const email = document.getElementById('checkout-email').value;
+            const phone = document.getElementById('checkout-phone').value;
+            const message = document.getElementById('checkout-message').value;
+
+            let cartSummary = "Récapitulatif de la commande :\n\n";
+            this.items.forEach(item => {
+                const price = item.promoPrice || item.price;
+                cartSummary += `- ${item.name} (x${item.quantity}) : ${this.formatPrice(price * item.quantity)} FCFA\n`;
             });
+            cartSummary += `\nTotal de la commande : ${this.formatPrice(this.getTotal())} FCFA`;
+
+            const body = `Bonjour, je souhaite passer la commande suivante :\n
+------------------------------------
+Informations client :
+Nom : ${name}
+Email : ${email}
+Téléphone : ${phone}
+${message ? `\nMessage : ${message}\n` : ''}
+------------------------------------
+${cartSummary}
+\n------------------------------------
+Merci.`;
+
+            const mailtoLink = `mailto:ot.ouestcameroun@yahoo.fr?subject=${encodeURIComponent('Nouvelle commande depuis la boutique en ligne')}&body=${encodeURIComponent(body)}`;
+
+            window.location.href = mailtoLink;
+
+            this.showNotification('Votre client de messagerie s\'ouvre pour envoyer la commande.');
+            closeModal();
+            setTimeout(() => {
+                this.clearCart();
+            }, 1000); // Clear cart after a delay
         };
     }
 
     init() {
         this.updateDisplay();
         
-        // Écouter les clics sur les boutons "Ajouter au panier"
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('btn-add-cart') || 
-                e.target.classList.contains('btn-add-cart-detail')) {
-                e.preventDefault();
-                
-                const button = e.target;
-                const productId = parseInt(button.dataset.productId);
-                const productCard = button.closest('.product-card, .product-info-detail');
-                
-                if (productCard) {
-                    const productName = productCard.querySelector('.product-title, .product-title-detail')?.textContent?.trim() || 'Produit';
-                    const priceElement = productCard.querySelector('.current-price, .promo-price, .current-price-detail, .promo-price-detail');
-                    const originalPriceElement = productCard.querySelector('.original-price, .original-price-detail');
-                    const imageElement = productCard.querySelector('.product-img, .product-img-main');
-                    const categoryElement = productCard.querySelector('.product-category');
-                    
-                    const price = this.extractPrice(priceElement?.textContent);
-                    const originalPrice = originalPriceElement ? this.extractPrice(originalPriceElement.textContent) : null;
-                    const image = imageElement?.src || '';
-                    const category = categoryElement?.textContent?.trim() || 'Produit Artisanal';
-                    
-                    this.addItem(productId, productName, originalPrice || price, image, category, originalPrice ? price : null);
-                }
+        const cartContent = document.getElementById('cart-content');
+
+        cartContent.addEventListener('click', (e) => {
+            const target = e.target.closest('.quantity-btn, .remove-item');
+            if (!target) return;
+
+            e.preventDefault();
+            const productId = target.dataset.productId;
+
+            if (target.classList.contains('quantity-btn')) {
+                const action = target.dataset.action;
+                this.updateQuantity(productId, action);
+            }
+
+            if (target.classList.contains('remove-item')) {
+                this.removeItem(productId);
             }
         });
     }
