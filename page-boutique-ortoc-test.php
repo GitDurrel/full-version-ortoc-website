@@ -528,17 +528,20 @@ get_header();
                         Tous les produits
                     </button>
                     <?php
-                    // Récupérer toutes les catégories de produits
-                    $categories = get_terms(array(
+                    // Récupérer toutes les catégories de produits, y compris les sous-catégories
+                    $all_categories = get_terms(array(
                         'taxonomy' => 'categorie_produit_ortoc',
                         'hide_empty' => true,
                     ));
                     
-                    if (!is_wp_error($categories) && !empty($categories)) {
-                        foreach ($categories as $category) {
-                            echo '<button class="category-btn" data-category="' . esc_attr($category->name) . '" '
-                               . 'style="padding: 8px 16px; border: 2px solid var(--primary-blue); background: white; color: var(--primary-blue); border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">' 
-                               . esc_html($category->name) . '</button>';
+                    if (!is_wp_error($all_categories) && !empty($all_categories)) {
+                        foreach ($all_categories as $category) {
+                            // Afficher uniquement les sous-catégories (celles qui ont un parent)
+                            if ($category->parent != 0) {
+                                echo '<button class="category-btn" data-category="' . esc_attr($category->name) . '" '
+                                   . 'style="padding: 8px 16px; border: 2px solid var(--primary-blue); background: white; color: var(--primary-blue); border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">' 
+                                   . esc_html($category->name) . '</button>';
+                            }
                         }
                     }
                     ?>
