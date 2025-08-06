@@ -388,22 +388,41 @@ get_header();
 </div>
 
 <script>
-// Gestion du panier avec localStorage
+/**
+ * Classe pour gérer le panier d'achat.
+ * Utilise le localStorage du navigateur pour conserver les données du panier.
+ */
 class Cart {
+    /**
+     * Le constructeur initialise le panier.
+     */
     constructor() {
+        // Charge les articles depuis le localStorage.
         this.items = this.loadCart();
+        // Initialise l'affichage et les écouteurs d'événements.
         this.init();
     }
 
+    /**
+     * Charge les articles du panier depuis le localStorage.
+     * @returns {Array} Un tableau d'objets représentant les articles du panier.
+     */
     loadCart() {
         const cart = localStorage.getItem('ortoc_cart');
         return cart ? JSON.parse(cart) : [];
     }
 
+    /**
+     * Sauvegarde le panier actuel dans le localStorage.
+     */
     saveCart() {
         localStorage.setItem('ortoc_cart', JSON.stringify(this.items));
     }
 
+    /**
+     * Ajoute un article au panier. (Cette fonction n'est pas utilisée sur cette page,
+     * mais est conservée pour la cohérence si le script est partagé).
+     */
     addItem(productId, productName, productPrice, productImage, productCategory, promoPrice = null) {
         const existingItem = this.items.find(item => item.id === productId);
         
@@ -426,36 +445,53 @@ class Cart {
         this.showNotification('Produit ajouté au panier !');
     }
 
+    /**
+     * Supprime un article du panier.
+     * @param {string} productId - L'ID du produit à supprimer.
+     */
     removeItem(productId) {
-        this.items = this.items.filter(item => item.id !== productId);
+        this.items = this.items.filter(item => item.id != productId);
         this.saveCart();
         this.updateDisplay();
         this.showNotification('Produit retiré du panier !');
     }
 
+    /**
+     * Met à jour la quantité d'un article.
+     * @param {string} productId - L'ID du produit à mettre à jour.
+     * @param {string} action - L'action à effectuer ('increase' ou 'decrease').
+     */
     updateQuantity(productId, action) {
         const item = this.items.find(item => item.id == productId);
         if (!item) return;
 
         if (action === 'increase') {
+            // Augmente la quantité seulement si elle est inférieure au stock disponible.
             if (item.quantity < item.stock) {
                 item.quantity++;
             } else {
+                // Affiche une erreur si le stock maximum est atteint.
                 this.showNotification('Quantité maximale en stock atteinte !', 'error');
                 return;
             }
         } else if (action === 'decrease') {
+            // Diminue la quantité.
             item.quantity--;
+            // Si la quantité atteint 0, supprime l'article du panier.
             if (item.quantity <= 0) {
                 this.removeItem(productId);
-                return;
+                return; 
             }
         }
-
+        
         this.saveCart();
         this.updateDisplay();
     }
 
+    /**
+     * Calcule le prix total du panier (en tenant compte des promotions).
+     * @returns {number} Le total du panier.
+     */
     getTotal() {
         return this.items.reduce((total, item) => {
             const price = item.promoPrice || item.price;
@@ -463,25 +499,41 @@ class Cart {
         }, 0);
     }
 
+    /**
+     * Calcule le sous-total du panier (sans les promotions).
+     * @returns {number} Le sous-total du panier.
+     */
     getSubtotal() {
         return this.items.reduce((total, item) => {
             return total + (item.price * item.quantity);
         }, 0);
     }
 
+    /**
+     * Calcule le montant total des économies réalisées grâce aux promotions.
+     * @returns {number} Le total des économies.
+     */
     getSavings() {
         return this.getSubtotal() - this.getTotal();
     }
 
+    /**
+     * Vide complètement le panier.
+     */
     clearCart() {
         this.items = [];
         this.saveCart();
         this.updateDisplay();
     }
 
+    /**
+     * Met à jour l'affichage HTML du panier.
+     * C'est la fonction principale qui redessine le contenu du panier à chaque changement.
+     */
     updateDisplay() {
         const cartContent = document.getElementById('cart-content');
         
+        // Si le panier est vide, affiche un message.
         if (this.items.length === 0) {
             cartContent.innerHTML = `
                 <div class="cart-empty">
@@ -490,7 +542,7 @@ class Cart {
                     </div>
                     <h2 class="cart-empty-title">Votre panier est vide</h2>
                     <p class="cart-empty-text">Ajoutez des produits pour commencer vos achats</p>
-                    <a href="${window.location.origin}/page-boutique-ortoc-test" class="btn-continue-shopping">
+                    <a href="${window.location.origin}/boutique-ortoc-test" class="btn-continue-shopping">
                         <i class="fas fa-arrow-left"></i>
                         Continuer les achats
                     </a>
@@ -499,6 +551,7 @@ class Cart {
             return;
         }
 
+        // Crée le HTML pour chaque article du panier.
         const itemsHtml = this.items.map(item => {
             const currentPrice = item.promoPrice || item.price;
             const priceDisplay = item.promoPrice ? 
@@ -537,6 +590,7 @@ class Cart {
             `;
         }).join('');
 
+        // Crée le HTML pour le résumé de la commande.
         const summaryHtml = `
             <div class="cart-summary">
                 <h2 class="summary-title">Résumé de la commande</h2>
@@ -554,13 +608,14 @@ class Cart {
                     <span class="summary-label">Total</span>
                     <span class="summary-value">${this.formatPrice(this.getTotal())} FCFA</span>
                 </div>
-                <button class="btn-checkout" onclick="cart.checkout()">
+                <button class="btn-checkout">
                     <i class="fas fa-credit-card"></i>
                     Finaliser la commande
                 </button>
             </div>
         `;
 
+        // Injecte le HTML généré dans la page.
         cartContent.innerHTML = `
             <div class="cart-content">
                 <div class="cart-items">
@@ -571,10 +626,20 @@ class Cart {
         `;
     }
 
+    /**
+     * Formate un nombre en chaîne de caractères monétaire.
+     * @param {number} price - Le prix à formater.
+     * @returns {string} Le prix formaté.
+     */
     formatPrice(price) {
         return new Intl.NumberFormat('fr-FR').format(price);
     }
 
+    /**
+     * Affiche une notification temporaire à l'écran.
+     * @param {string} message - Le message à afficher.
+     * @param {string} [type='success'] - Le type de notification ('success' ou 'error').
+     */
     showNotification(message, type = 'success') {
         const notification = document.createElement('div');
         const bgColor = type === 'success' ? 'var(--success-green)' : 'var(--danger-red)';
@@ -609,12 +674,18 @@ class Cart {
         }, 3000);
     }
 
+    /**
+     * Gère le processus de finalisation de la commande.
+     * Affiche une modale pour recueillir les informations de l'utilisateur,
+     * puis génère un lien mailto pour envoyer la commande.
+     */
     checkout() {
         if (this.items.length === 0) {
             this.showNotification('Votre panier est vide !', 'error');
             return;
         }
 
+        // Crée le HTML pour la modale de commande.
         const formHtml = `
             <div id="checkout-modal" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999;">
                 <form id="user-info-form" style="background:var(--white);padding:30px;border-radius:12px;width:90%;max-width:450px;box-shadow:0 8px 32px rgba(0,0,0,0.2);">
@@ -632,6 +703,7 @@ class Cart {
         `;
         document.body.insertAdjacentHTML('beforeend', formHtml);
 
+        // Gère la fermeture de la modale.
         const modal = document.getElementById('checkout-modal');
         const form = document.getElementById('user-info-form');
         const cancelBtn = document.getElementById('cancel-checkout');
@@ -641,15 +713,18 @@ class Cart {
         };
 
         cancelBtn.onclick = closeModal;
-
+        
+        // Gère la soumission du formulaire.
         form.onsubmit = (e) => {
             e.preventDefault();
-
+            
+            // Récupère les informations de l'utilisateur.
             const name = document.getElementById('checkout-name').value;
             const email = document.getElementById('checkout-email').value;
             const phone = document.getElementById('checkout-phone').value;
             const message = document.getElementById('checkout-message').value;
 
+            // Crée un résumé textuel du panier.
             let cartSummary = "Récapitulatif de la commande :\n\n";
             this.items.forEach(item => {
                 const price = item.promoPrice || item.price;
@@ -657,6 +732,7 @@ class Cart {
             });
             cartSummary += `\nTotal de la commande : ${this.formatPrice(this.getTotal())} FCFA`;
 
+            // Crée le corps de l'email.
             const body = `Bonjour, je souhaite passer la commande suivante :\n
 ------------------------------------
 Informations client :
@@ -669,28 +745,40 @@ ${cartSummary}
 \n------------------------------------
 Merci.`;
 
+            // Crée le lien mailto et l'ouvre.
             const mailtoLink = `mailto:ot.ouestcameroun@yahoo.fr?subject=${encodeURIComponent('Nouvelle commande depuis la boutique en ligne')}&body=${encodeURIComponent(body)}`;
-
+            
             window.location.href = mailtoLink;
 
             this.showNotification('Votre client de messagerie s\'ouvre pour envoyer la commande.');
             closeModal();
+            // Vide le panier après un court délai pour laisser le temps au client de messagerie de s'ouvrir.
             setTimeout(() => {
                 this.clearCart();
             }, 1000); // Clear cart after a delay
         };
     }
 
+    /**
+     * Initialise les écouteurs d'événements pour la page du panier.
+     */
     init() {
         this.updateDisplay();
         
         const cartContent = document.getElementById('cart-content');
 
+        // Utilise la délégation d'événements pour gérer les clics sur les boutons du panier.
         cartContent.addEventListener('click', (e) => {
-            const target = e.target.closest('.quantity-btn, .remove-item');
+            const target = e.target.closest('.quantity-btn, .remove-item, .btn-checkout');
             if (!target) return;
 
             e.preventDefault();
+            
+            if (target.classList.contains('btn-checkout')) {
+                this.checkout();
+                return;
+            }
+
             const productId = target.dataset.productId;
 
             if (target.classList.contains('quantity-btn')) {
@@ -704,6 +792,10 @@ Merci.`;
         });
     }
 
+    /**
+     * Extrait un prix numérique d'une chaîne de caractères.
+     * (Non utilisé sur cette page, mais conservé pour la portabilité).
+     */
     extractPrice(priceText) {
         if (!priceText) return 0;
         const match = priceText.match(/[\d\s]+/);
@@ -711,7 +803,7 @@ Merci.`;
     }
 }
 
-// Initialiser le panier
+// Initialise le panier au chargement de la page.
 const cart = new Cart();
 </script>
 

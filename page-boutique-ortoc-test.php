@@ -186,10 +186,10 @@ get_header();
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     max-width: 1400px;
-    margin: 50px auto;
-  }
+    margin: 0 auto;
+}
 
-  .product-card {
+.product-card {
     background: var(--white);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -469,7 +469,7 @@ get_header();
         padding: 10px 12px;
         font-size: 13px;
     }
-  }
+}
 </style>
 
     <!-- SECTION I - Banner  -->
@@ -502,156 +502,71 @@ get_header();
     </div>
 </section>
 
-    
+    <!-- SECTION III - Categories produits -->
     
     
     
     <!-- SECTION IV - Catalogue Produits-->
     <div class="shop-container">
-        <h2 class="section-title">Catalogue <br> <span class="title_bold text_outline_white">Produits</span></h2>
-    <div class="shop-grid">
-            
-            <!-- Categories produits -->
-            <div class="product-categories-accordion" style="margin-bottom: 30px;">
-                <?php
-                $terms = get_terms(array(
-                    'taxonomy' => 'categorie_produit_ortoc',
-                    'hide_empty' => false,
-                    'parent' => 0
-                ));
-                $current_cat = isset($_GET['cat']) ? intval($_GET['cat']) : 0;
-                echo '<a href="' . esc_url(remove_query_arg('cat')) . '" class="cat-btn' . ($current_cat ? '' : ' active') . '">Tous</a>';
-                if (!empty($terms) && !is_wp_error($terms)) :
-                    foreach ($terms as $parent) :
-                        $active_parent = ($current_cat === $parent->term_id) ? 'active' : '';
-                        $children = get_terms(array(
-                            'taxonomy' => 'categorie_produit_ortoc',
-                            'hide_empty' => false,
-                            'parent' => $parent->term_id
-                        ));
-                        $has_children = !empty($children) && !is_wp_error($children);
-                        $is_open = ($current_cat && ($current_cat === $parent->term_id || in_array($current_cat, wp_list_pluck($children, 'term_id'))));
-                        echo '<div class="cat-accordion-group">';
-                        echo '<button class="cat-accordion-btn ' . $active_parent . '" type="button" aria-expanded="' . ($is_open ? 'true' : 'false') . '" onclick="toggleAccordion(this)">' . esc_html($parent->name);
-                        if ($has_children) echo ' <span class="cat-arrow">▼</span>';
-                        echo '</button>';
-                        if ($has_children) {
-                            echo '<div class="cat-accordion-panel" style="display:' . ($is_open ? 'block' : 'none') . ';">';
-                            foreach ($children as $child) {
-                                $active_child = ($current_cat === $child->term_id) ? 'active' : '';
-                                echo '<a href="' . esc_url(add_query_arg('cat', $child->term_id)) . '" class="cat-btn cat-child ' . $active_child . '">' . esc_html($child->name) . '</a>';
-                            }
-                            echo '</div>';
-                        }
-                        echo '</div>';
-                    endforeach;
-                endif;
-                ?>
+        <!-- Système de filtrage complet -->
+        <div class="filter-system" style="max-width: 1200px; margin: 0 auto 40px; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            <!-- Barre de recherche améliorée -->
+            <div class="search-container" style="margin-bottom: 25px;">
+                <div style="position: relative; max-width: 500px; margin: 0 auto;">
+                    <input type="text" id="product-search" placeholder="Rechercher par nom, catégorie ou description..." 
+                           style="width: 100%; padding: 15px 50px 15px 20px; border-radius: 25px; border: 2px solid var(--primary-blue); font-size: 16px; outline: none; transition: all 0.3s ease;">
+                    <i class="fas fa-search" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--primary-blue); font-size: 18px;"></i>
+                </div>
             </div>
-            <style>
-            .product-categories-accordion {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .cat-accordion-group {
-                width: 100%;
-                margin-bottom: 8px;
-            }
-            .cat-accordion-btn {
-                width: 100%;
-                text-align: left;
-                font-size: 17px;
-                font-weight: 700;
-                padding: 10px 22px;
-                margin-bottom: 4px;
-                background: #0c4178 !important;
-                color: white !important;
-                border: 2px solid #FFD700 !important;
-                border-radius: 10px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                cursor: pointer;
-                transition: background 0.2s, color 0.2s;
-            }
-            .cat-accordion-btn.active, .cat-accordion-btn:hover {
-                background: #FFD700 !important;
-                color: #0c4178 !important;
-                border-color: #0c4178 !important;
-            }
-            .cat-arrow {
-                font-size: 13px;
-                margin-left: 10px;
-                transition: transform 0.2s;
-            }
-            .cat-accordion-btn[aria-expanded="true"] .cat-arrow {
-                transform: rotate(180deg);
-            }
-            .cat-accordion-panel {
-                padding-left: 18px;
-                margin-top: 4px;
-                display: none;
-                animation: fadeIn 0.3s;
-            }
-            .cat-btn.cat-child {
-                background: var(--light-gray);
-                color: var(--primary-blue);
-                border: 2px solid var(--primary-blue);
-                border-radius: 8px;
-                padding: 7px 16px;
-                font-weight: 600;
-                font-size: 15px;
-                text-decoration: none;
-                transition: all 0.2s;
-                margin-bottom: 4px;
-                display: inline-block;
-                margin-right: 8px;
-                margin-top: 4px;
-            }
-            .cat-btn.cat-child.active, .cat-btn.cat-child:hover {
-                background: var(--primary-blue);
-                color: var(--white);
-                border-color: var(--primary-blue);
-            }
-            .cat-btn.active, .cat-btn:hover {
-                background: var(--primary-blue);
-                color: var(--white);
-                border-color: var(--primary-blue);
-                text-decoration: none;
-            }
-            .cat-btn {
-                margin-bottom: 4px;
-            }
-            @media (max-width: 900px) {
-                .product-categories-accordion {
-                    flex-direction: column;
-                    align-items: stretch;
-                }
-                .cat-accordion-panel {
-                    padding-left: 0;
-                }
-            }
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-            </style>
-            <script>
-            function toggleAccordion(btn) {
-                var panel = btn.nextElementSibling;
-                var expanded = btn.getAttribute('aria-expanded') === 'true';
-                btn.setAttribute('aria-expanded', !expanded);
-                if (panel) {
-                    panel.style.display = expanded ? 'none' : 'block';
-                }
-            }
-            </script>
-            <!-- Fin Categories produits -->
             
+            <!-- Filtres par catégorie -->
+            <div class="category-filters" style="margin-bottom: 20px;">
+                <h4 style="color: var(--primary-blue); margin-bottom: 15px; text-align: center; font-size: 18px;">Filtrer par catégorie</h4>
+                <div class="filter-buttons" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+                    <button class="category-btn active" data-category="all" 
+                            style="padding: 8px 16px; border: 2px solid var(--primary-blue); background: var(--primary-blue); color: white; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+                        Tous les produits
+                    </button>
+                    <?php
+                    // Récupérer toutes les catégories de produits
+                    $categories = get_terms(array(
+                        'taxonomy' => 'categorie_produit_ortoc',
+                        'hide_empty' => true,
+                    ));
+                    
+                    if (!is_wp_error($categories) && !empty($categories)) {
+                        foreach ($categories as $category) {
+                            echo '<button class="category-btn" data-category="' . esc_attr($category->name) . '" '
+                               . 'style="padding: 8px 16px; border: 2px solid var(--primary-blue); background: white; color: var(--primary-blue); border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">' 
+                               . esc_html($category->name) . '</button>';
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+            
+            <!-- Filtres supplémentaires -->
+            <div class="additional-filters" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center;">
+                <!-- Filtre promotions -->
+                <div class="promo-filter" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="promo-only" style="transform: scale(1.2);">
+                    <label for="promo-only" style="color: var(--primary-blue); font-weight: 600;">Promotions uniquement</label>
+                </div>
+                
+                <!-- Bouton reset -->
+                <button id="reset-filters" 
+                        style="padding: 10px 20px; background: var(--accent-yellow); color: var(--primary-blue); border: none; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">
+                    <i class="fas fa-refresh"></i> Réinitialiser
+                </button>
+            </div>
+            
+            <!-- Compteur de résultats -->
+            <div id="results-count" style="text-align: center; margin-top: 20px; color: var(--primary-blue); font-weight: 600; font-size: 16px;">
+                <!-- Le compteur sera mis à jour par JavaScript -->
+            </div>
+        </div>
+
+        <div class="shop-grid">
             <?php
             // Query pour récupérer les produits du CPT produit-ortoc
             $args = array(
@@ -669,11 +584,22 @@ get_header();
                     $prix_promotionnel = get_field('prix_promotionnel');
                     $prix_affiche = $prix_promotionnel ? $prix_promotionnel : $prix_normal;
                     $is_promotion = $prix_promotionnel && $prix_promotionnel < $prix_normal;
+            
+            $categories = get_the_terms(get_the_ID(), 'categorie_produit_ortoc');
+            $category_names = [];
+            if ($categories && !is_wp_error($categories)) {
+                foreach ($categories as $category) {
+                    $category_names[] = $category->name;
+                }
+            }
+            $category_attr = !empty($category_names) ? esc_attr(implode(',', $category_names)) : 'Produit Artisanal';
             ?>
-    <div class="product-card">
+                <div class="product-card"
+                     data-category="<?php echo $category_attr; ?>"
+                     data-subcategory="<?php echo esc_attr(get_field('sous_categorie')); ?>">
                     <div class="product-image">
-      <a href="<?php the_permalink(); ?>">
-        <?php 
+                        <a href="<?php the_permalink(); ?>">
+                            <?php 
                             // Récupérer l'image comme dans page-chefferies-et-musees.php
                             $img_main = get_field('image_principale');
                             $img_main_url = is_array($img_main) ? $img_main['url'] : $img_main;
@@ -761,7 +687,7 @@ get_header();
     </div>
 
     <!-- Bouton flottant panier -->
-    <a href="<?php echo home_url('/cart'); ?>" class="floating-cart-btn" id="floating-cart-btn">
+    <a href="<?php echo home_url('/page-cart'); ?>" class="floating-cart-btn" id="floating-cart-btn">
         <i class="fas fa-shopping-cart"></i>
         <span class="cart-badge" id="cart-badge" style="display: none;">0</span>
     </a>
@@ -859,8 +785,172 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 });
-</script>
-    
-<?php
-get_footer();
-?>
+
+// Système de filtrage complet
+let currentFilters = {
+    search: '',
+    category: 'all',
+    maxPrice: 100000,
+    promoOnly: false
+};
+
+// Fonction principale de filtrage
+function filterProducts() {
+        const cards = document.querySelectorAll('.shop-grid .product-card');
+        let visibleCount = 0;
+        
+        cards.forEach(card => {
+            let isVisible = true;
+            
+            // Filtre par recherche (nom + catégorie)
+            if (currentFilters.search) {
+                const title = card.querySelector('.product-title').textContent.toLowerCase();
+                const category = card.dataset.category.toLowerCase();
+                const searchTerm = currentFilters.search.toLowerCase();
+                
+                if (!title.includes(searchTerm) && !category.includes(searchTerm)) {
+                    isVisible = false;
+                }
+            }
+            
+            // Filtre par catégorie
+            if (currentFilters.category !== 'all') {
+                const cardCategories = card.dataset.category.toLowerCase().split(',');
+                const filterCategory = currentFilters.category.toLowerCase();
+                
+                if (!cardCategories.some(cat => cat.trim() === filterCategory)) {
+                    isVisible = false;
+                }
+            }
+            
+            // Filtre par prix
+            const priceElements = card.querySelectorAll('.current-price, .promo-price');
+            if (priceElements.length > 0) {
+                const priceText = priceElements[priceElements.length - 1].textContent;
+                const price = parseInt(priceText.replace(/[^0-9]/g, ''));
+                
+                if (price > currentFilters.maxPrice) {
+                    isVisible = false;
+                }
+            }
+            
+            // Filtre promotions uniquement
+            if (currentFilters.promoOnly) {
+                const hasPromo = card.querySelector('.promotion-badge') !== null;
+                if (!hasPromo) {
+                    isVisible = false;
+                }
+            }
+            
+            // Appliquer la visibilité
+            card.style.display = isVisible ? '' : 'none';
+            if (isVisible) visibleCount++;
+        });
+        
+        // Mettre à jour le compteur
+        updateResultsCount(visibleCount);
+    }
+
+    // Mettre à jour le compteur de résultats
+    function updateResultsCount(count) {
+        const counter = document.getElementById('results-count');
+        if (count === 0) {
+            counter.innerHTML = '<i class="fas fa-exclamation-circle"></i> Aucun produit trouvé';
+            counter.style.color = '#e74c3c';
+        } else {
+            counter.innerHTML = `<i class="fas fa-check-circle"></i> ${count} produit${count > 1 ? 's' : ''} trouvé${count > 1 ? 's' : ''}`;
+            counter.style.color = 'var(--primary-blue)';
+        }
+    }
+
+    // Gestionnaires d'événements pour les filtres
+    document.getElementById('product-search').addEventListener('input', function() {
+        currentFilters.search = this.value;
+        filterProducts();
+    });
+
+    // Filtres par catégorie
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Retirer la classe active de tous les boutons
+            document.querySelectorAll('.category-btn').forEach(b => {
+                b.classList.remove('active');
+                b.style.background = 'white';
+                b.style.color = 'var(--primary-blue)';
+            });
+            
+            // Ajouter la classe active au bouton cliqué
+            this.classList.add('active');
+            this.style.background = 'var(--primary-blue)';
+            this.style.color = 'white';
+            
+            currentFilters.category = this.dataset.category;
+            filterProducts();
+        });
+    });
+
+    // Filtre prix
+    const priceRange = document.getElementById('price-range');
+    const priceDisplay = document.getElementById('price-display');
+
+    priceRange.addEventListener('input', function() {
+        const value = parseInt(this.value);
+        currentFilters.maxPrice = value;
+        priceDisplay.textContent = new Intl.NumberFormat('fr-FR').format(value) + ' FCFA';
+        filterProducts();
+    });
+
+    // Filtre promotions
+    document.getElementById('promo-only').addEventListener('change', function() {
+        currentFilters.promoOnly = this.checked;
+        filterProducts();
+    });
+
+    // Bouton reset
+    document.getElementById('reset-filters').addEventListener('click', function() {
+        // Reset des valeurs
+        currentFilters = {
+            search: '',
+            category: 'all',
+            maxPrice: 100000,
+            promoOnly: false
+        };
+        
+        // Reset des éléments UI
+        document.getElementById('product-search').value = '';
+        document.getElementById('price-range').value = 100000;
+        document.getElementById('price-display').textContent = '100 000 FCFA';
+        document.getElementById('promo-only').checked = false;
+        
+        // Reset des boutons de catégorie
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.classList.remove('active');
+            btn.style.background = 'white';
+            btn.style.color = 'var(--primary-blue)';
+        });
+        
+        // Activer le bouton "Tous les produits"
+        const allBtn = document.querySelector('.category-btn[data-category="all"]');
+        allBtn.classList.add('active');
+        allBtn.style.background = 'var(--primary-blue)';
+        allBtn.style.color = 'white';
+        
+        // Appliquer les filtres
+        filterProducts();
+        
+        // Animation du bouton
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 150);
+    });
+
+    // Initialiser le compteur au chargement
+    setTimeout(() => {
+        filterProducts();
+    }, 100);
+    </script>
+
+    <?php
+    get_footer();
+    ?>
